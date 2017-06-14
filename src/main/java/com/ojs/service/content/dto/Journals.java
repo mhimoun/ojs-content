@@ -5,6 +5,9 @@ public class Journals {
 
     private String linkToSelf;
 
+    public Journals(String baseUrl) {
+        this.linkToSelf = baseUrl + "journal";
+    }
 
 
     public String getLinkToSelf() {
