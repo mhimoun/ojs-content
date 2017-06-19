@@ -42,5 +42,12 @@ public class JournalControllerTest {
                 andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/journal")));
     }
 
+    @Test
+    public void shouldReturnUpdated() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).
+                andExpect(jsonPath("$.updated").isNotEmpty());
+    }
+
 
 }
