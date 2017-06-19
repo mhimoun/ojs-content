@@ -13,10 +13,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RestController
 public class JournalController {
 
-    @Value("${ojs.content.baseurl:localhost8080/v1/}")
-    private String baseUrl;
 
-    @GetMapping("/journal")
+    @GetMapping("/v1/journal")
     public Journals environments() {
 
         Link selfLink = linkTo(methodOn(JournalController.class).environments()).withSelfRel();

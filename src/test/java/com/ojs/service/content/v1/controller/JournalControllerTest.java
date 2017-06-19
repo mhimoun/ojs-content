@@ -26,20 +26,20 @@ public class JournalControllerTest {
     @Test
     public void shouldReturn200OKResponseOnDefaultJournalEndpoint() throws Exception {
 
-        this.mockMvc.perform(get("/journal")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/v1/journal")).andExpect(status().isOk());
     }
 
     @Test
     public void shouldReturnJsonResponse() throws Exception {
 
-        this.mockMvc.perform(get("/journal")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+        this.mockMvc.perform(get("/v1/journal")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
     @Test
     public void shouldReturnLinkToSelf() throws Exception {
 
-        this.mockMvc.perform(get("/journal")).andDo(print()).
-                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/journal")));
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/journal")));
     }
 
 
