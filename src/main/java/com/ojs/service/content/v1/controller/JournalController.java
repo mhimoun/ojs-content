@@ -22,7 +22,9 @@ public class JournalController {
         Journals journals = new Journals();
         journals.add(selfLink);
         Journal journal = new Journal(1, "my-path");
+        journal.setDescription("my-description");
         Journal journal2 = new Journal(2, "my-second-path");
+        journal2.setDescription("my-description2");
         journals.addJournal(journal);
         journals.addJournal(journal2);
 

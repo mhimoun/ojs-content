@@ -8,6 +8,7 @@ import org.springframework.hateoas.ResourceSupport;
 public class Journal extends ResourceSupport {
     private final int journalId;
     private final String path;
+    private String description;
 
 
     public Journal(int journalId, String path) {
@@ -22,5 +23,13 @@ public class Journal extends ResourceSupport {
 
     public String getPath() {
         return path;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

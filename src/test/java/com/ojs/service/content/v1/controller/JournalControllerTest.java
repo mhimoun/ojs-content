@@ -59,5 +59,34 @@ public class JournalControllerTest {
 
 
 
+    @Test
+    public void shouldReturnJournalId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].journalId").value(1)).
+                andExpect(jsonPath("$.journals[1].journalId").value(2));
+    }
+
+
+
+    @Test
+    public void shouldReturnJournalPath() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].path").value("my-path")).
+                andExpect(jsonPath("$.journals[1].path").value("my-second-path"));
+    }
+
+
+    @Test
+    public void shouldReturnJournalDescription() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].description").value("my-description")).
+                andExpect(jsonPath("$.journals[1].description").value("my-description2"));
+    }
+
+
+
 
 }
