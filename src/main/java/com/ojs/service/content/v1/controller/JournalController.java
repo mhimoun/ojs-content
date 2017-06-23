@@ -1,5 +1,6 @@
 package com.ojs.service.content.v1.controller;
 
+import com.ojs.service.content.v1.dto.Journal;
 import com.ojs.service.content.v1.dto.Journals;
 import org.springframework.hateoas.Link;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,10 @@ public class JournalController {
 
         Journals journals = new Journals();
         journals.add(selfLink);
+        Journal journal = new Journal(1, "my-path");
+        Journal journal2 = new Journal(2, "my-second-path");
+        journals.addJournal(journal);
+        journals.addJournal(journal2);
 
         return journals;
 
