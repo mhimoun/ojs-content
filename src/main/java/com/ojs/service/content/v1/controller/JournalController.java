@@ -15,9 +15,9 @@ public class JournalController {
 
 
     @GetMapping("/v1/journal")
-    public Journals environments() {
+    public Journals getJournals() {
 
-        Link selfLink = linkTo(methodOn(JournalController.class).environments()).withSelfRel();
+        Link selfLink = linkTo(methodOn(JournalController.class).getJournals()).withSelfRel();
 
         Journals journals = new Journals();
         journals.add(selfLink);

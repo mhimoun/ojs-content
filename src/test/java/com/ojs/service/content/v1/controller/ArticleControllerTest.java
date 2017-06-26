@@ -27,13 +27,23 @@ public class ArticleControllerTest {
     @Test
     public void shouldReturn200OKResponseOnDefaultArticleEndpoint() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/v1/article/1")).andExpect(status().isOk());
     }
 
     @Test
     public void shouldReturnJsonResponse() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+        this.mockMvc.perform(get("/v1/article/1")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
+
+
+    @Test
+    public void shouldReturnLinkToSelf() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/1")).andDo(print()).
+                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/article/1")));
+    }
+
+
 
 }
