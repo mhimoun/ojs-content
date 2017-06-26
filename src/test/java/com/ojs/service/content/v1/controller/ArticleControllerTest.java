@@ -10,9 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -54,13 +52,19 @@ public class ArticleControllerTest {
 
 
     @Test
+    public void shouldReturnLinkToIssue() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/1")).
+                andExpect(jsonPath("$.links[?(@.rel=='issue')].href").value(("http://localhost/v1/issue/10")));
+    }
+
+
+    @Test
     public void shouldReturnJournalId() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
                 andExpect(jsonPath("$.journalId").value(1));
     }
-
-
 
 
     @Test
@@ -77,7 +81,6 @@ public class ArticleControllerTest {
         this.mockMvc.perform(get("/v1/article/5")).
                 andExpect(jsonPath("$.articleId").value(5));
     }
-
 
 
 }

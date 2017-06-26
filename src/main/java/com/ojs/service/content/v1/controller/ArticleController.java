@@ -17,7 +17,7 @@ public class ArticleController {
     @GetMapping("/v1/article/{articleId}")
     public Article getArticleDefault(@PathVariable int articleId) {
 
-        Article article = new Article(1, 10, articleId);
+        Article article = new Article(articleId, 10, 1);
 
         populateArticleHateoasLinks(article, articleId);
         return article;
@@ -26,9 +26,11 @@ public class ArticleController {
     private void populateArticleHateoasLinks(Article article, int articleId) {
 
         Link selfLink = linkTo(methodOn(ArticleController.class).getArticleDefault(articleId)).withSelfRel();
+        Link issueLink = linkTo(methodOn(IssueController.class).getIssueDefault(10)).withRel("issue");
         Link journalLink = linkTo(methodOn(JournalController.class).getJournalDefault(1)).withRel("journal");
 
         article.add(selfLink);
+        article.add(issueLink);
         article.add(journalLink);
 
 
