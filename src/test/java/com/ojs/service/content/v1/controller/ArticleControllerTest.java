@@ -30,5 +30,10 @@ public class ArticleControllerTest {
         this.mockMvc.perform(get("/v1/article")).andExpect(status().isOk());
     }
 
+    @Test
+    public void shouldReturnJsonResponse() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
 
 }
