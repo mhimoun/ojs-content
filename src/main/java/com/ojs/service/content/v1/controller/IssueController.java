@@ -1,8 +1,6 @@
 package com.ojs.service.content.v1.controller;
 
 import com.ojs.service.content.v1.dto.Issue;
-import com.ojs.service.content.v1.dto.Journal;
-import com.ojs.service.content.v1.dto.Journals;
 import org.springframework.hateoas.Link;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +17,21 @@ public class IssueController {
 
 
     @GetMapping("/{issueId}")
-    public Issue getIssueDefault(@PathVariable int  issueId) {
-        return new Issue(issueId,1);
+    public Issue getIssueDefault(@PathVariable int issueId) {
+        Issue issue = new Issue(issueId, 1);
+        populateIssueHateoasLinks(issue, issueId);
+        return issue;
     }
+
+    private void populateIssueHateoasLinks(Issue issue, int issueId) {
+
+        Link selfLink = linkTo(methodOn(IssueController.class).getIssueDefault(issueId)).withSelfRel();
+        Link journalLink = linkTo(methodOn(JournalController.class).getJournalDefault(1)).withRel("journal");
+
+        issue.add(selfLink);
+        issue.add(journalLink);
+
+
+    }
+
 }

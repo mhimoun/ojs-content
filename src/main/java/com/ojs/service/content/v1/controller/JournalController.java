@@ -39,6 +39,11 @@ public class JournalController {
 
     @GetMapping("/{journalId}")
     public Journal getJournalDefault(@PathVariable int  journalId) {
-        return new Journal(journalId, "my-path");
+        Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
+
+        Journal journal = new Journal(journalId, "my-path");
+        journal.setDescription("my-description");
+        journal.add(selfLink);
+        return journal;
     }
 }
