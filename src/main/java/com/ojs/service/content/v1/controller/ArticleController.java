@@ -18,8 +18,10 @@ public class ArticleController {
     public Article getArticleDefault(@PathVariable int articleId) {
 
         Link selfLink = linkTo(methodOn(ArticleController.class).getArticleDefault(articleId)).withSelfRel();
+        Link journalLink = linkTo(methodOn(JournalController.class).getJournalDefault(1)).withRel("journal");
         Article article = new Article(1, 10, articleId);
         article.add(selfLink);
+        article.add(journalLink);
 
         return article;
     }
