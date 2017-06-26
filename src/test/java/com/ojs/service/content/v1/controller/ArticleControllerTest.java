@@ -40,8 +40,36 @@ public class ArticleControllerTest {
     @Test
     public void shouldReturnLinkToSelf() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).andDo(print()).
+        this.mockMvc.perform(get("/v1/article/1")).
                 andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/article/1")));
+    }
+
+
+    @Test
+    public void shouldReturnJournalId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/1")).
+                andExpect(jsonPath("$.journalId").value(1));
+    }
+
+
+
+
+    @Test
+    public void shouldReturnIssueId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/1")).
+                andExpect(jsonPath("$.issueId").value(10));
+    }
+
+
+
+
+    @Test
+    public void shouldReturnArticleId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/5")).
+                andExpect(jsonPath("$.articleId").value(5));
     }
 
 

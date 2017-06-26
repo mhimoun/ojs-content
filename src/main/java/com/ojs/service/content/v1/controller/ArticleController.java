@@ -15,14 +15,13 @@ public class ArticleController {
 
 
     @GetMapping("/v1/article/{articleId}")
-    public Article articleDefault(@PathVariable int articleId) {
+    public Article getArticleDefault(@PathVariable int articleId) {
 
-        Link selfLink = linkTo(methodOn(ArticleController.class).articleDefault(articleId)).withSelfRel();
+        Link selfLink = linkTo(methodOn(ArticleController.class).getArticleDefault(articleId)).withSelfRel();
         Article article = new Article(1, 10, articleId);
         article.add(selfLink);
 
         return article;
-
     }
 
 }
