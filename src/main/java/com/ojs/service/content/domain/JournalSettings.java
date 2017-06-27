@@ -1,20 +1,20 @@
 package com.ojs.service.content.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity @IdClass(JournalSettingsId.class)
 public class JournalSettings {
 
     @Id
-    @Column
+    @Column(name = "journal_id",insertable = false, updatable = false)
     private Long JournalId;
 
+    @Id
     @Column
     private String locale;
 
+    @Id
     @Column
     private String settingName;
 
@@ -23,6 +23,10 @@ public class JournalSettings {
 
     @Column
     private String settingType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "journal_id",insertable = false, updatable = false)
+    private Journals journal;
 
 
     public Long getJournalId() {
@@ -43,5 +47,9 @@ public class JournalSettings {
 
     public String getSettingType() {
         return settingType;
+    }
+
+    public Journals getJournal() {
+        return journal;
     }
 }

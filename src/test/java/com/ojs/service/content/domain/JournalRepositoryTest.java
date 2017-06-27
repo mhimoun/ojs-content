@@ -41,12 +41,13 @@ public class JournalRepositoryTest {
     public void findByEnabled_shouldReturnAllEnabledJournalsWithSetting() throws Exception {
         List<Journals> journals = repository.findByEnabled(1);
         assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings());
+        assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings().size() == 1);
     }
 
     @Test
     public void findByEnabled_shouldJournalSettingFields() throws Exception {
         List<Journals> journals = repository.findByEnabled(1);
-        JournalSettings settings = journals.get(0).getJournalSettings();
+        JournalSettings settings = journals.get(0).getJournalSettings().get(1);
         assertThat(settings.getJournalId()).isEqualTo(1);
         assertThat(settings.getLocale()).isEqualTo("en_US");
         assertThat(settings.getSettingName()).isEqualTo("supportedLocales");

@@ -1,11 +1,11 @@
 package com.ojs.service.content.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Journals {
     @Id
-    @GeneratedValue
     private Long JournalId;
 
     @Column
@@ -20,9 +20,8 @@ public class Journals {
     @Column
     private int enabled;
 
-    @OneToOne
-    @JoinColumn(name="journal_id")
-    JournalSettings journalSettings;
+    @OneToMany(mappedBy = "journal")
+    List<JournalSettings> journalSettings;
 
 
     public Long getJournalId() {
@@ -45,7 +44,7 @@ public class Journals {
         return enabled;
     }
 
-    public JournalSettings getJournalSettings() {
+    public List<JournalSettings> getJournalSettings() {
         return journalSettings;
     }
 }
