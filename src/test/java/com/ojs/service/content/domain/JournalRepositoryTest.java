@@ -31,7 +31,9 @@ public class JournalRepositoryTest {
         Journals journal = journals.get(0);
         assertThat(journal.getJournalId()).isEqualTo(1);
         assertThat(journal.getEnabled()).isEqualTo(1);
+        assertThat(journal.getSeq()).isEqualTo(1);
         assertThat(journal.getPath()).isEqualTo("path-context");
+        assertThat(journal.getPrimaryLocale()).isEqualTo("en_US");
         assertThat(journal.getPrimaryLocale()).isEqualTo("en_US");
     }
 
@@ -46,6 +48,10 @@ public class JournalRepositoryTest {
         List<Journals> journals = repository.findByEnabled(1);
         JournalSettings settings = journals.get(0).getJournalSettings();
         assertThat(settings.getJournalId()).isEqualTo(1);
+        assertThat(settings.getLocale()).isEqualTo("en_US");
+        assertThat(settings.getSettingName()).isEqualTo("supportedLocales");
+        assertThat(settings.getSettingValue()).isEqualTo("a:3:{i:0;s:5:\\\"fr_CA\\\";i:1;s:5:\\\"ar_IQ\\\";i:2;s:5:\\\"en_US\\\";}");
+        assertThat(settings.getSettingType()).isEqualTo("object");
     }
 
 

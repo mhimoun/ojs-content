@@ -12,7 +12,7 @@ public class Journals {
     private String path;
 
     @Column
-    private String seq;
+    private Long seq;
 
     @Column
     private String primaryLocale;
@@ -33,7 +33,7 @@ public class Journals {
         return path;
     }
 
-    public String getSeq() {
+    public Long getSeq() {
         return seq;
     }
 
