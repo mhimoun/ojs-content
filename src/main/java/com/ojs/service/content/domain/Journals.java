@@ -1,9 +1,6 @@
 package com.ojs.service.content.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Journals {
@@ -20,9 +17,35 @@ public class Journals {
     @Column
     private String primaryLocale;
 
-   @Column
+    @Column
     private int enabled;
 
+    @OneToOne
+    @JoinColumn(name="journal_id")
+    JournalSettings journalSettings;
 
 
+    public Long getJournalId() {
+        return JournalId;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getSeq() {
+        return seq;
+    }
+
+    public String getPrimaryLocale() {
+        return primaryLocale;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public JournalSettings getJournalSettings() {
+        return journalSettings;
+    }
 }
