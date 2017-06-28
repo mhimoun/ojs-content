@@ -29,8 +29,8 @@ public class DBJournalService implements JournalService {
 
         List<Journals> domainJournals = journalRepository.findByEnabled(1);
 
-        for(Journals domainJournal : domainJournals){
-            dtoJournals.add(new Journal(1,"p"));
+        for(Journals dj : domainJournals){
+            dtoJournals.add(new Journal(dj.getJournalId(),dj.getPath()));
         }
 
         return dtoJournals;

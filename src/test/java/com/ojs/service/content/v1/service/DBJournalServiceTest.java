@@ -71,14 +71,27 @@ public class DBJournalServiceTest {
     }
 
 
+    @Test
+    public void getEnabledJournals_ShouldReturnJournalId() throws Exception {
+
+        when(journalRepository.findByEnabled(1)).thenReturn(listDomainJournals());
+
+        List<Journal> enabledJournals = journalService.getEnabledJournals();
+
+        assertThat(enabledJournals.get(0).getJournalId()).isEqualTo(1);
+        assertThat(enabledJournals.get(1).getJournalId()).isEqualTo(2);
+
+    }
+
+
 
 
     private List<Journals> listDomainJournals() {
 
         List<Journals> journals = new ArrayList<>();
 
-        journals.add(new Journals());
-        journals.add(new Journals());
+        journals.add(new Journals(1l,"path1","en-US"));
+        journals.add(new Journals(2l,"path2","en-UK"));
         return  journals;
     }
 

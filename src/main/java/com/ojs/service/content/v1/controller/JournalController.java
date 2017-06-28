@@ -24,9 +24,9 @@ public class JournalController {
 
         Journals journals = new Journals();
         journals.add(selfLink);
-        Journal journal = new Journal(1, "my-path");
+        Journal journal = new Journal(1l, "my-path");
         journal.setDescription("my-description");
-        Journal journal2 = new Journal(2, "my-second-path");
+        Journal journal2 = new Journal(2l, "my-second-path");
         journal2.setDescription("my-description2");
         journals.addJournal(journal);
         journals.addJournal(journal2);
@@ -38,7 +38,7 @@ public class JournalController {
 
 
     @GetMapping("/{journalId}")
-    public Journal getJournalDefault(@PathVariable int  journalId) {
+    public Journal getJournalDefault(@PathVariable long  journalId) {
         Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
 
         Journal journal = new Journal(journalId, "my-path");

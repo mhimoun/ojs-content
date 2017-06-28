@@ -20,6 +20,15 @@ public class Journals {
     @Column
     private int enabled;
 
+    public Journals(Long journalId, String path, String primaryLocale) {
+        JournalId = journalId;
+        this.path = path;
+        this.primaryLocale = primaryLocale;
+    }
+
+    public Journals() {
+    }
+
     @OneToMany(mappedBy = "journal")
     List<JournalSettings> journalSettings;
 
