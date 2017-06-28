@@ -56,4 +56,8 @@ public class Journals {
     public List<JournalSettings> getJournalSettings() {
         return journalSettings;
     }
+
+    public void setJournalSettings(List<JournalSettings> journalSettings) {
+        this.journalSettings = journalSettings;
+    }
 }

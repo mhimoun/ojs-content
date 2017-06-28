@@ -29,6 +29,16 @@ public class JournalSettings {
     private Journals journal;
 
 
+    public JournalSettings(Long journalId, String locale, String settingName, String settingValue, String settingType) {
+        JournalId = journalId;
+        this.locale = locale;
+        this.settingName = settingName;
+        this.settingValue = settingValue;
+        this.settingType = settingType;
+    }
+
+    public JournalSettings(){}
+
     public Long getJournalId() {
         return JournalId;
     }

@@ -1,21 +1,17 @@
 package com.ojs.service.content.v1.service;
 
 import com.ojs.service.content.v1.domain.JournalRepository;
+import com.ojs.service.content.v1.domain.JournalSettings;
 import com.ojs.service.content.v1.domain.Journals;
 import com.ojs.service.content.v1.dto.Journal;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +31,6 @@ public class DBJournalServiceTest {
     public void setup() {
         journalService = new DBJournalService(journalRepository);
     }
-
 
 
     @Test
@@ -58,7 +53,6 @@ public class DBJournalServiceTest {
     }
 
 
-
     @Test
     public void getEnabledJournals_ShouldReturnResultsWhenJournalsInDB() throws Exception {
 
@@ -72,27 +66,32 @@ public class DBJournalServiceTest {
 
 
     @Test
-    public void getEnabledJournals_ShouldReturnJournalId() throws Exception {
+    public void getEnabledJournals_ShouldReturnJournalDetails() throws Exception {
 
         when(journalRepository.findByEnabled(1)).thenReturn(listDomainJournals());
 
         List<Journal> enabledJournals = journalService.getEnabledJournals();
 
-        assertThat(enabledJournals.get(0).getJournalId()).isEqualTo(1);
-        assertThat(enabledJournals.get(1).getJournalId()).isEqualTo(2);
+        assertThat(enabledJournals.get(1).getJournalId()).isEqualTo(12);
+        assertThat(enabledJournals.get(0).getPath()).isEqualTo("path1");
+        assertThat(enabledJournals.get(0).getPrimaryLocale()).isEqualTo("en-US");
+        assertThat(enabledJournals.get(0).getDescription()).isEqualTo("my-description");
 
     }
-
-
 
 
     private List<Journals> listDomainJournals() {
 
         List<Journals> journals = new ArrayList<>();
 
-        journals.add(new Journals(1l,"path1","en-US"));
-        journals.add(new Journals(2l,"path2","en-UK"));
-        return  journals;
+        Journals journal = new Journals(1l, "path1", "en-US");
+        JournalSettings description = new JournalSettings(1l, "en-US", "description", "my-description", "string");
+        JournalSettings donationFeeName = new JournalSettings(1l, "en-US", "donationFeeName", "Donations to journal", "string");
+        List<JournalSettings> settings = Arrays.asList(description, donationFeeName);
+        journal.setJournalSettings(settings);
+        journals.add(journal);
+        journals.add(new Journals(12l, "path2", "en-UK"));
+        return journals;
     }
 
 

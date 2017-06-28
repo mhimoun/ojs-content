@@ -9,6 +9,7 @@ public class Journal extends ResourceSupport {
     private final long journalId;
     private final String path;
     private String description;
+    private String primaryLocale;
 
 
     public Journal(Long journalId, String path) {
@@ -31,5 +32,13 @@ public class Journal extends ResourceSupport {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPrimaryLocale() {
+        return primaryLocale;
+    }
+
+    public void setPrimaryLocale(String primaryLocale) {
+        this.primaryLocale = primaryLocale;
     }
 }
