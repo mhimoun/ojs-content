@@ -1,4 +1,4 @@
-package com.ojs.service.content.domain;
+package com.ojs.service.content.v1.domain;
 
 import java.io.Serializable;
 

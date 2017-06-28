@@ -1,4 +1,4 @@
-package com.ojs.service.content.domain;
+package com.ojs.service.content.v1.domain;
 
 
 import org.junit.Test;
@@ -41,18 +41,18 @@ public class JournalRepositoryTest {
     public void findByEnabled_shouldReturnAllEnabledJournalsWithSetting() throws Exception {
         List<Journals> journals = repository.findByEnabled(1);
         assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings());
-        assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings().size() == 1);
+        assertThat(journals.get(0).getJournalSettings().size()).isEqualTo(7);
     }
 
     @Test
     public void findByEnabled_shouldJournalSettingFields() throws Exception {
         List<Journals> journals = repository.findByEnabled(1);
-        JournalSettings settings = journals.get(0).getJournalSettings().get(1);
+        JournalSettings settings = journals.get(0).getJournalSettings().get(3);
         assertThat(settings.getJournalId()).isEqualTo(1);
         assertThat(settings.getLocale()).isEqualTo("en_US");
-        assertThat(settings.getSettingName()).isEqualTo("supportedLocales");
-        assertThat(settings.getSettingValue()).isEqualTo("a:3:{i:0;s:5:\\\"fr_CA\\\";i:1;s:5:\\\"ar_IQ\\\";i:2;s:5:\\\"en_US\\\";}");
-        assertThat(settings.getSettingType()).isEqualTo("object");
+        assertThat(settings.getSettingName()).isEqualTo("description");
+        assertThat(settings.getSettingValue()).isEqualTo("<p>the journal description</p>");
+        assertThat(settings.getSettingType()).isEqualTo("string");
     }
 
 
