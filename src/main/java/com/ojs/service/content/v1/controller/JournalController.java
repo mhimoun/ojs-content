@@ -2,6 +2,8 @@ package com.ojs.service.content.v1.controller;
 
 import com.ojs.service.content.v1.dto.Journal;
 import com.ojs.service.content.v1.dto.Journals;
+import com.ojs.service.content.v1.service.JournalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping("/v1/journal")
 public class JournalController {
 
+    @Autowired
+    private JournalService journalService;
 
     @GetMapping
     public Journals getJournals() {
@@ -24,12 +28,7 @@ public class JournalController {
 
         Journals journals = new Journals();
         journals.add(selfLink);
-        Journal journal = new Journal(1l, "my-path");
-        journal.setDescription("my-description");
-        Journal journal2 = new Journal(2l, "my-second-path");
-        journal2.setDescription("my-description2");
-        journals.addJournal(journal);
-        journals.addJournal(journal2);
+        journals.addJournals(journalService.getEnabledJournals());
 
         return journals;
 
@@ -38,7 +37,7 @@ public class JournalController {
 
 
     @GetMapping("/{journalId}")
-    public Journal getJournalDefault(@PathVariable long  journalId) {
+    public Journal getJournalDefault(@PathVariable long journalId) {
         Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
 
         Journal journal = new Journal(journalId, "my-path");

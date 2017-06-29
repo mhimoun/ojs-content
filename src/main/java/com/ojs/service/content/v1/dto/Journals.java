@@ -16,12 +16,12 @@ public class Journals extends ResourceSupport {
         return updated;
     }
 
-    public void addJournal(Journal journal) {
+    public void addJournals(List<Journal> journalsToAdd) {
         if (journals == null) {
             journals = new ArrayList<>();
         }
 
-        journals.add(journal);
+        journals.addAll(journalsToAdd);
     }
 
     public List<Journal> getJournals() {
