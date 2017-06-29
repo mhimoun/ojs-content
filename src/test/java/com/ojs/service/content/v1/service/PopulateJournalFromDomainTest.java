@@ -24,7 +24,6 @@ public class PopulateJournalFromDomainTest {
     }
 
 
-
     @Test
     public void shouldPopulatePrimaryLocal() throws Exception {
 
@@ -32,6 +31,28 @@ public class PopulateJournalFromDomainTest {
         Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
 
         assertThat(journalDto.getPrimaryLocale()).isEqualTo("en-US");
+    }
+
+
+
+
+
+
+    @Test
+    public void shouldPopulateDescription() throws Exception {
+
+        Journals journalDomain = new Journals(1l, "path1", "en-US");
+        JournalSettings description = new JournalSettings(1l, "en-US", "description", "my description", "string");
+        List<JournalSettings> settings = Arrays.asList(description);
+        journalDomain.setJournalSettings(settings);
+
+
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+
+        assertThat(journalDto.getDescription()).isEqualTo("my description");
+
+
+
     }
 
 }
