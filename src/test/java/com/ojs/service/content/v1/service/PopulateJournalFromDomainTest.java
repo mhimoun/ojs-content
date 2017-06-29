@@ -34,10 +34,6 @@ public class PopulateJournalFromDomainTest {
     }
 
 
-
-
-
-
     @Test
     public void shouldPopulateDescription() throws Exception {
 

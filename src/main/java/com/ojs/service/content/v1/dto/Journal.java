@@ -2,9 +2,7 @@ package com.ojs.service.content.v1.dto;
 
 import org.springframework.hateoas.ResourceSupport;
 
-/**
- * Created by agile on 6/23/17.
- */
+
 public class Journal extends ResourceSupport {
     private final long journalId;
     private final String path;

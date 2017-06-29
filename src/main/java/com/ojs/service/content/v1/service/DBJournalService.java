@@ -6,7 +6,6 @@ import com.ojs.service.content.v1.domain.Journals;
 import com.ojs.service.content.v1.dto.Journal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +30,7 @@ public class DBJournalService implements JournalService {
         List<Journals> domainJournals = journalRepository.findByEnabled(1);
 
         for (Journals dj : domainJournals) {
-            Journal dotJournal = new Journal(dj.getJournalId(), dj.getPath());
-            dotJournal.setPrimaryLocale(dj.getPrimaryLocale());
-            dtoJournals.add(dotJournal);
-            if (!CollectionUtils.isEmpty(dj.getJournalSettings())){
-                dotJournal.setDescription(dj.getJournalSettings().get(0).getSettingValue());
-            }
+            dtoJournals.add(PopulateJournalFromDomain.valueOf(dj));
         }
 
         return dtoJournals;
