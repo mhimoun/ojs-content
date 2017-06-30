@@ -18,7 +18,7 @@ public class Journals {
     private String primaryLocale;
 
     @Column
-    private int enabled;
+    private boolean enabled;
 
     public Journals(Long journalId, String path, String primaryLocale) {
         JournalId = journalId;
@@ -49,7 +49,7 @@ public class Journals {
         return primaryLocale;
     }
 
-    public int getEnabled() {
+    public boolean getEnabled() {
         return enabled;
     }
 

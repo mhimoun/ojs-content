@@ -21,16 +21,16 @@ public class JournalRepositoryTest {
 
     @Test
     public void findByEnabled_ShouldReturnAllEnabledJournals() throws Exception {
-        List<Journals> journals = repository.findByEnabled(1);
+        List<Journals> journals = repository.findByEnabled(true);
         assertThat(journals.size()).isEqualTo(2);
     }
 
     @Test
     public void findByEnabled_shouldReturnJournalFields() throws Exception {
-        List<Journals> journals = repository.findByEnabled(1);
+        List<Journals> journals = repository.findByEnabled(true);
         Journals journal = journals.get(0);
         assertThat(journal.getJournalId()).isEqualTo(1);
-        assertThat(journal.getEnabled()).isEqualTo(1);
+        assertThat(journal.getEnabled()).isEqualTo(true);
         assertThat(journal.getSeq()).isEqualTo(1);
         assertThat(journal.getPath()).isEqualTo("path-context");
         assertThat(journal.getPrimaryLocale()).isEqualTo("en_US");
@@ -39,14 +39,14 @@ public class JournalRepositoryTest {
 
     @Test
     public void findByEnabled_shouldReturnAllEnabledJournalsWithSetting() throws Exception {
-        List<Journals> journals = repository.findByEnabled(1);
+        List<Journals> journals = repository.findByEnabled(true);
         assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings());
         assertThat(journals.get(0).getJournalSettings().size()).isEqualTo(7);
     }
 
     @Test
     public void findByEnabled_shouldJournalSettingFields() throws Exception {
-        List<Journals> journals = repository.findByEnabled(1);
+        List<Journals> journals = repository.findByEnabled(true);
         JournalSettings settings = journals.get(0).getJournalSettings().get(3);
         assertThat(settings.getJournalId()).isEqualTo(1);
         assertThat(settings.getLocale()).isEqualTo("en_US");

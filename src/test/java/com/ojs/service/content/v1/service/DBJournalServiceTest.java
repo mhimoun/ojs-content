@@ -48,7 +48,7 @@ public class DBJournalServiceTest {
         List<Journal> enabledJournals = journalService.getEnabledJournals();
         assertThat(enabledJournals.size()).isEqualTo(0);
 
-        verify(journalRepository).findByEnabled(1);
+        verify(journalRepository).findByEnabled(true);
 
     }
 
@@ -56,7 +56,7 @@ public class DBJournalServiceTest {
     @Test
     public void getEnabledJournals_ShouldReturnResultsWhenJournalsInDB() throws Exception {
 
-        when(journalRepository.findByEnabled(1)).thenReturn(listDomainJournals());
+        when(journalRepository.findByEnabled(true)).thenReturn(listDomainJournals());
 
         List<Journal> enabledJournals = journalService.getEnabledJournals();
 
@@ -68,7 +68,7 @@ public class DBJournalServiceTest {
     @Test
     public void getEnabledJournals_ShouldReturnJournalDetails() throws Exception {
 
-        when(journalRepository.findByEnabled(1)).thenReturn(listDomainJournals());
+        when(journalRepository.findByEnabled(true)).thenReturn(listDomainJournals());
 
         List<Journal> enabledJournals = journalService.getEnabledJournals();
 
