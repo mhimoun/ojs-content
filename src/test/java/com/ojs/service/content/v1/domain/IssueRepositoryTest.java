@@ -54,5 +54,17 @@ public class IssueRepositoryTest {
         assertThat(issues.get(0).getOpenAccessDate()).hasSameTimeAs(sdf.parse("2017-07-07 07:07:07"));
     }
 
+    @Test
+    public void findPublished_ShouldReturnIssuesDInfo() throws Exception {
+        List<Issues> issues = repository.findByPublished(true);
+        assertThat(issues.get(0).getAccessStatus()).isEqualTo((short)1);
+        assertThat(issues.get(0).isShowNumber()).isEqualTo(true);
+        assertThat(issues.get(0).isShowTitle()).isEqualTo(true);
+        assertThat(issues.get(0).isShowVolume()).isEqualTo(true);
+        assertThat(issues.get(0).isShowYear()).isEqualTo(true);
+        assertThat(issues.get(0).getOriginalStyleFileName()).isEqualTo("org file");
+        assertThat(issues.get(0).getStyleFileName()).isEqualTo("file1");
+    }
+
 
 }
