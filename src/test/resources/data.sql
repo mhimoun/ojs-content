@@ -12,3 +12,7 @@ INSERT INTO journal_settings (journal_id, locale, setting_name, setting_value, s
  (2, 'en_US', 'description', '<p>the journal description 2</p>', 'string'),
  (1, 'en_US', 'donationFeeDescription', 'Donations of any amount to this journal are gratefully received and provide a means for the editors to continue to provide a journal of the highest quality to its readers.', 'string'),
  (1, 'en_US', 'donationFeeName', 'Donations to journal', 'string');
+ 
+ 
+ INSERT INTO issues (issue_id, journal_id, volume, number, year, published, current, date_published, date_notified, last_modified, access_status, open_access_date, show_volume, show_number, show_year, show_title, style_file_name, original_style_file_name) VALUES
+(1, 1, 1, '12', 2016, 1, 1, '2017-06-29 15:18:00', NULL, '2017-06-29 15:18:00', 1, NULL, 1, 1, 1, 1, NULL, NULL);
