@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Journals {
     @Id
-    private Long JournalId;
+    private long JournalId;
 
     @Column
     private String path;
@@ -33,7 +33,7 @@ public class Journals {
     List<JournalSettings> journalSettings;
 
 
-    public Long getJournalId() {
+    public long getJournalId() {
         return JournalId;
     }
 

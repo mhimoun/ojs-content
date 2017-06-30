@@ -59,9 +59,28 @@ public class DBIssueServiceTest {
 
     }
 
+
+    @Test
+    public void getPublishedIssues_shouldReturnIssuesWithJournalIdAndIssuesId() throws Exception {
+
+        when(issueRepository.findByPublished(true)).thenReturn(listOfDomainIssues());
+        List<Issue> issues = issueService.getPublishedIssues();
+
+        assertThat(issues.get(0).getIssueId()).isEqualTo(1);
+        assertThat(issues.get(1).getIssueId()).isEqualTo(2);
+        assertThat(issues.get(0).getJournalId()).isEqualTo(1);
+        assertThat(issues.get(1).getJournalId()).isEqualTo(2);
+
+    }
+
+
+
     private List<Issues> listOfDomainIssues() {
 
-        return Arrays.asList(new Issues(), new Issues());
+        Issues issue = new Issues(1,1);
+
+        Issues secondIssue = new Issues(2,2);
+        return Arrays.asList(issue, secondIssue);
     }
 
 

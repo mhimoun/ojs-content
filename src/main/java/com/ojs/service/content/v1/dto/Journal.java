@@ -10,7 +10,7 @@ public class Journal extends ResourceSupport {
     private String primaryLocale;
 
 
-    public Journal(Long journalId, String path) {
+    public Journal(long journalId, String path) {
         this.journalId = journalId;
         this.path = path;
 

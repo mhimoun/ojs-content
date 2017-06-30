@@ -9,10 +9,10 @@ import java.util.Date;
 public class Issues {
 
     @Id
-    private Long issueId;
+    private long issueId;
 
     @Column
-    private Long journalId;
+    private long journalId;
 
     @Column
     private short volume;
@@ -66,12 +66,19 @@ public class Issues {
     public Issues() {
     }
 
+    public Issues(long issueId, long journalId) {
 
-    public Long getIssueId() {
+        this.issueId = issueId;
+        this.journalId = journalId;
+
+    }
+
+
+    public long getIssueId() {
         return issueId;
     }
 
-    public Long getJournalId() {
+    public long getJournalId() {
         return journalId;
     }
 
