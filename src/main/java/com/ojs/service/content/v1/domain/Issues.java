@@ -31,37 +31,37 @@ public class Issues {
     private boolean current;
 
     @Column
-    private Date date_published;
+    private Date datePublished;
 
     @Column
-    private Date date_notified;
+    private Date dateNotified;
 
     @Column
-    private Date last_modified;
+    private Date lastModified;
 
     @Column
-    private short access_status;
+    private short accessStatus;
 
     @Column
-    private Date open_access_date;
+    private Date openAccessDate;
 
     @Column
-    private boolean show_volume;
+    private boolean showVolume;
 
     @Column
-    private boolean show_number;
+    private boolean showNumber;
 
     @Column
-    private boolean show_year;
+    private boolean showYear;
 
     @Column
-    private boolean show_title;
+    private boolean showTitle;
 
     @Column
-    private String style_file_name;
+    private String styleFileName;
 
     @Column
-    private String original_style_file_name;
+    private String originalStyleFileName;
 
     public Issues() {
     }
@@ -95,47 +95,47 @@ public class Issues {
         return current;
     }
 
-    public Date getDate_published() {
-        return date_published;
+    public Date getDatePublished() {
+        return datePublished;
     }
 
-    public Date getDate_notified() {
-        return date_notified;
+    public Date getDateNotified() {
+        return dateNotified;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public Date getLastModified() {
+        return lastModified;
     }
 
-    public short getAccess_status() {
-        return access_status;
+    public short getAccessStatus() {
+        return accessStatus;
     }
 
-    public Date getOpen_access_date() {
-        return open_access_date;
+    public Date getOpenAccessDate() {
+        return openAccessDate;
     }
 
-    public boolean isShow_volume() {
-        return show_volume;
+    public boolean isShowVolume() {
+        return showVolume;
     }
 
-    public boolean isShow_number() {
-        return show_number;
+    public boolean isShowNumber() {
+        return showNumber;
     }
 
-    public boolean isShow_year() {
-        return show_year;
+    public boolean isShowYear() {
+        return showYear;
     }
 
-    public boolean isShow_title() {
-        return show_title;
+    public boolean isShowTitle() {
+        return showTitle;
     }
 
-    public String getStyle_file_name() {
-        return style_file_name;
+    public String getStyleFileName() {
+        return styleFileName;
     }
 
-    public String getOriginal_style_file_name() {
-        return original_style_file_name;
+    public String getOriginalStyleFileName() {
+        return originalStyleFileName;
     }
 }

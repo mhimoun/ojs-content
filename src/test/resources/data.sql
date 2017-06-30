@@ -15,7 +15,10 @@ INSERT INTO journal_settings (journal_id, locale, setting_name, setting_value, s
  
  
  INSERT INTO issues (issue_id, journal_id, volume, number, year, published, current, date_published, date_notified, last_modified, access_status, open_access_date, show_volume, show_number, show_year, show_title, style_file_name, original_style_file_name) VALUES
-(1, 1, 3, '12', 2016, 1, 1, '2017-06-29 15:18:00', NULL, '2017-06-29 15:18:00', 1, NULL, 1, 1, 1, 1, NULL, NULL);
+(1, 1, 3, '12', 2016, 1, 1, '2017-06-29 15:18:00', '2017-07-22 11:12:05', '2017-06-29 15:18:00', 1, '2017-07-07 07:07:07', 1, 1, 1, 1, NULL, NULL);
 
  INSERT INTO issues (issue_id, journal_id, volume, number, year, published, current, date_published, date_notified, last_modified, access_status, open_access_date, show_volume, show_number, show_year, show_title, style_file_name, original_style_file_name) VALUES
-(2, 1, 1, '12', 2016, 0, 1, '2017-06-29 15:18:00', NULL, '2017-06-29 15:18:00', 1, NULL, 1, 1, 1, 1, NULL, NULL);
+(2, 1, 1, '13', 2016, 0, 1, '2017-06-29 15:18:00', NULL, '2017-06-29 15:18:00', 1, NULL, 1, 1, 1, 1, NULL, NULL);
+
+ INSERT INTO issues (issue_id, journal_id, volume, number, year, published, current, date_published, date_notified, last_modified, access_status, open_access_date, show_volume, show_number, show_year, show_title, style_file_name, original_style_file_name) VALUES
+(3, 1, 2, '11', 2016, 1, 0, '2017-06-29 15:18:00', NULL, '2017-06-29 15:18:00', 1, NULL, 1, 1, 1, 1, NULL, NULL);

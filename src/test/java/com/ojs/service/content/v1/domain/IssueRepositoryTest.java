@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +22,7 @@ public class IssueRepositoryTest {
     @Test
     public void findPublished_ShouldReturnAllPublishedIssues() throws Exception {
         List<Issues> issues = repository.findByPublished(true);
-        assertThat(issues.size()).isEqualTo(1);
+        assertThat(issues.size()).isEqualTo(2);
     }
 
     @Test
@@ -33,6 +34,24 @@ public class IssueRepositoryTest {
         assertThat(issues.get(0).getVolume()).isEqualTo((short) 3);
         assertThat(issues.get(0).getNumber()).isEqualTo("12");
         assertThat(issues.get(0).getYear()).isEqualTo((short) 2016);
+    }
+
+
+    @Test
+    public void findPublished_ShouldReturnIssuesIsCurrent() throws Exception {
+        List<Issues> issues = repository.findByPublished(true);
+        assertThat(issues.get(0).isCurrent()).isEqualTo(true);
+        assertThat(issues.get(1).isCurrent()).isEqualTo(false);
+    }
+
+    @Test
+    public void findPublished_ShouldReturnIssuesDates() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        List<Issues> issues = repository.findByPublished(true);
+        assertThat(issues.get(0).getDatePublished()).hasSameTimeAs(sdf.parse("2017-06-29 15:18:00"));
+        assertThat(issues.get(0).getLastModified()).hasSameTimeAs(sdf.parse("2017-06-29 15:18:00"));
+        assertThat(issues.get(0).getDateNotified()).hasSameTimeAs(sdf.parse("2017-07-22 11:12:05"));
+        assertThat(issues.get(0).getOpenAccessDate()).hasSameTimeAs(sdf.parse("2017-07-07 07:07:07"));
     }
 
 
