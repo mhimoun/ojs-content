@@ -27,7 +27,7 @@ public class DBIssueService implements IssueService {
         List<Issues> domainIssues = issueRepository.findByPublished(true);
 
         for (Issues di : domainIssues) {
-            issues.add(new Issue(di.getIssueId(), di.getJournalId()));
+            issues.add(PopulateIssueFromDomain.valueOf(di));
         }
 
         return issues;

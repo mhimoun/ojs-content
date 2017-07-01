@@ -74,11 +74,22 @@ public class DBIssueServiceTest {
     }
 
 
+    @Test
+    public void getPublishedIssues_shouldIssueWithVolume() throws Exception {
+
+        when(issueRepository.findByPublished(true)).thenReturn(listOfDomainIssues());
+        List<Issue> issues = issueService.getPublishedIssues();
+
+        assertThat(issues.get(0).getVolume()).isEqualTo((short)12);
+
+    }
+
+
 
     private List<Issues> listOfDomainIssues() {
 
         Issues issue = new Issues(1,1);
-
+        issue.setVolume((short) 12);
         Issues secondIssue = new Issues(2,2);
         return Arrays.asList(issue, secondIssue);
     }

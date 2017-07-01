@@ -145,4 +145,70 @@ public class Issues {
     public String getOriginalStyleFileName() {
         return originalStyleFileName;
     }
+
+    public void setVolume(short volume) {
+        this.volume = volume;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setYear(short year) {
+        this.year = year;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public void setCurrent(boolean current) {
+        this.current = current;
+    }
+
+    public void setDatePublished(Date datePublished) {
+        this.datePublished = datePublished;
+    }
+
+    public void setDateNotified(Date dateNotified) {
+        this.dateNotified = dateNotified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public void setAccessStatus(short accessStatus) {
+        this.accessStatus = accessStatus;
+    }
+
+    public void setOpenAccessDate(Date openAccessDate) {
+        this.openAccessDate = openAccessDate;
+    }
+
+    public void setShowVolume(boolean showVolume) {
+        this.showVolume = showVolume;
+    }
+
+    public void setShowNumber(boolean showNumber) {
+        this.showNumber = showNumber;
+    }
+
+    public void setShowYear(boolean showYear) {
+        this.showYear = showYear;
+    }
+
+    public void setShowTitle(boolean showTitle) {
+        this.showTitle = showTitle;
+    }
+
+    public void setStyleFileName(String styleFileName) {
+        this.styleFileName = styleFileName;
+    }
+
+    public void setOriginalStyleFileName(String originalStyleFileName) {
+        this.originalStyleFileName = originalStyleFileName;
+    }
+
+
 }
