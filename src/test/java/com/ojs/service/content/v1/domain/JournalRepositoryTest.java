@@ -8,7 +8,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
+import static java.util.stream.Collectors.toMap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 
@@ -41,13 +44,14 @@ public class JournalRepositoryTest {
     public void findByEnabled_shouldReturnAllEnabledJournalsWithSetting() throws Exception {
         List<Journals> journals = repository.findByEnabled(true);
         assertNotNull("Journal setting must not be null", journals.get(0).getJournalSettings());
-        assertThat(journals.get(0).getJournalSettings().size()).isEqualTo(7);
+        assertThat(journals.get(0).getJournalSettings().size()).isGreaterThan(7);
     }
 
     @Test
     public void findByEnabled_shouldJournalSettingFields() throws Exception {
         List<Journals> journals = repository.findByEnabled(true);
-        JournalSettings settings = journals.get(0).getJournalSettings().get(3);
+        Map<String, JournalSettings> settingsMap = journals.get(0).getJournalSettings().stream().collect(toMap(JournalSettings::getSettingName, Function.identity()));
+        JournalSettings settings = settingsMap.get("description");
         assertThat(settings.getJournalId()).isEqualTo(1);
         assertThat(settings.getLocale()).isEqualTo("en_US");
         assertThat(settings.getSettingName()).isEqualTo("description");

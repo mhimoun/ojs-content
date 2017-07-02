@@ -8,6 +8,7 @@ public class Journal extends ResourceSupport {
     private final String path;
     private String description;
     private String primaryLocale;
+    private String onlineIssn;
 
 
     public Journal(long journalId, String path) {
@@ -38,5 +39,13 @@ public class Journal extends ResourceSupport {
 
     public void setPrimaryLocale(String primaryLocale) {
         this.primaryLocale = primaryLocale;
+    }
+
+    public String getOnlineIssn() {
+        return onlineIssn;
+    }
+
+    public void setOnlineIssn(String onlineIssn) {
+        this.onlineIssn = onlineIssn;
     }
 }

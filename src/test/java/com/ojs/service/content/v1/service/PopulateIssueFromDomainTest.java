@@ -38,26 +38,7 @@ public class PopulateIssueFromDomainTest {
         assertThat(issue.getNumber()).isEqualTo("11");
 
     }
-/*
-    private Date datePublished;
 
-    @Column
-    private Date dateNotified;
-
-    @Column
-    private Date lastModified;
-
-    @Column
-    private short accessStatus;
-
-    @Column
-    private Date openAccessDate;
-
-    @Column
-    private String styleFileName;
-
-    @Column
-    private String originalStyleFileName;*/
 
     @Test
     public void shouldCreateIssueWithAllBooleanFieldsFromDomain() throws Exception {
@@ -79,18 +60,6 @@ public class PopulateIssueFromDomainTest {
         assertThat(issue.isShowYear()).isEqualTo(true);
 
     }
-
-
-    /*
-
-    @Column
-    private short accessStatus;
-
-    @Column
-    private String styleFileName;
-
-    @Column
-    private String originalStyleFileName;*/
 
     @Test
     public void shouldCreateIssueWithAllDateFieldsFromDomain() throws Exception {

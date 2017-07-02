@@ -59,16 +59,13 @@ public class JournalControllerTest {
                 andExpect(jsonPath("$.journals", hasSize(2)));
     }
 
-
-
     @Test
     public void shouldReturnJournalId() throws Exception {
 
-        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+        this.mockMvc.perform(get("/v1/journal")).
                 andExpect(jsonPath("$.journals[0].journalId").value(1)).
                 andExpect(jsonPath("$.journals[1].journalId").value(2));
     }
-
 
 
     @Test
@@ -88,7 +85,12 @@ public class JournalControllerTest {
                 andExpect(jsonPath("$.journals[1].description").value("<p>the journal description 2</p>"));
     }
 
+    @Test
+    public void shouldReturnJournalOnlineIssn() throws Exception {
 
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].onlineIssn").value("1365-2435"));
+    }
 
 
 }

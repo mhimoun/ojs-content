@@ -46,9 +46,20 @@ public class PopulateJournalFromDomainTest {
         Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
 
         assertThat(journalDto.getDescription()).isEqualTo("my description");
+    }
+
+    @Test
+    public void shouldPopulateOnlineIssn() throws Exception {
+
+        Journals journalDomain = new Journals(1l, "path1", "en-US");
+        JournalSettings onlineIssn = new JournalSettings(1l, "", "onlineIssn", "my onlineIssn", "string");
+        List<JournalSettings> settings = Arrays.asList(onlineIssn);
+        journalDomain.setJournalSettings(settings);
 
 
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
 
+        assertThat(journalDto.getOnlineIssn()).isEqualTo("my onlineIssn");
     }
 
 }

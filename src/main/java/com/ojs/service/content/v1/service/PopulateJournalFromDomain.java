@@ -19,7 +19,8 @@ public class PopulateJournalFromDomain {
         if (!CollectionUtils.isEmpty(journalDomain.getJournalSettings())) {
             Map<String, JournalSettings> settingsMap = journalDomain.getJournalSettings().stream().collect(toMap(JournalSettings::getSettingName, Function.identity()));
 
-            journal.setDescription(settingsMap.get("description").getSettingValue());
+            if (settingsMap.containsKey("description")) journal.setDescription(settingsMap.get("description").getSettingValue());
+            if (settingsMap.containsKey("onlineIssn")) journal.setOnlineIssn(settingsMap.get("onlineIssn").getSettingValue());
 
         }
 
