@@ -93,4 +93,22 @@ public class JournalControllerTest {
     }
 
 
+    @Test
+    public void shouldReturnJournalAbbreviation() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].abbreviation").value("Journal Abbreviation"));
+    }
+
+
+
+    @Test
+    public void shouldReturnJournalName() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].name").value("Test default name"));
+    }
+
+
+
 }

@@ -10,6 +10,8 @@ INSERT INTO journal_settings (journal_id, locale, setting_name, setting_value, s
  (1, 'en_US', 'customHeaders', 'Custom HTML header tags to be inserted in the header of every page (e.g., META tags).', 'string'),
  (1, 'en_US', 'description', '<p>the journal description</p>', 'string'),
  (2, 'en_US', 'description', '<p>the journal description 2</p>', 'string'),
+ (1, 'en_US', 'abbreviation', 'Journal Abbreviation', 'string'),
+ (1, 'en_US', 'name', 'Test default name', 'string'),
  (1, 'en_US', 'donationFeeDescription', 'Donations of any amount to this journal are gratefully received and provide a means for the editors to continue to provide a journal of the highest quality to its readers.', 'string'),
  (1, 'en_US', 'donationFeeName', 'Donations to journal', 'string'),
  (1, '', 'onlineIssn', '1365-2435', 'string'),
