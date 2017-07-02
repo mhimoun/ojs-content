@@ -4,8 +4,11 @@ import com.ojs.service.content.v1.domain.JournalRepository;
 import com.ojs.service.content.v1.domain.JournalSettings;
 import com.ojs.service.content.v1.domain.Journals;
 import com.ojs.service.content.v1.dto.Journal;
+import com.ojs.service.content.v1.exception.JournalNotFoundException;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -27,6 +30,10 @@ public class DBJournalServiceTest {
 
     JournalService journalService;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+
     @Before
     public void setup() {
         journalService = new DBJournalService(journalRepository);
@@ -47,7 +54,6 @@ public class DBJournalServiceTest {
 
         List<Journal> enabledJournals = journalService.getEnabledJournals();
         assertThat(enabledJournals.size()).isEqualTo(0);
-
         verify(journalRepository).findByEnabled(true);
 
     }
@@ -59,9 +65,7 @@ public class DBJournalServiceTest {
         when(journalRepository.findByEnabled(true)).thenReturn(listDomainJournals());
 
         List<Journal> enabledJournals = journalService.getEnabledJournals();
-
         assertThat(enabledJournals.size()).isEqualTo(2);
-
     }
 
 
@@ -79,6 +83,26 @@ public class DBJournalServiceTest {
 
     }
 
+    @Test
+    public void getJournalById_shouldThrowAnExceptionWhenJournalNotFound() throws Exception {
+
+        this.thrown.expect(JournalNotFoundException.class);
+
+        journalService.getJournalById(1l);
+    }
+
+
+    @Test
+    public void getJournalById_shouldReturnJournalWhenFoundInDB() throws Exception {
+
+        when(journalRepository.findByJournalId(5l)).thenReturn(new Journals(5l, "some-path", "en"));
+
+        Journal journal = journalService.getJournalById(5l);
+
+        assertThat(journal.getJournalId()).isEqualTo(5l);
+        assertThat(journal.getPath()).isEqualTo("some-path");
+        assertThat(journal.getPrimaryLocale()).isEqualTo("en");
+    }
 
     private List<Journals> listDomainJournals() {
 

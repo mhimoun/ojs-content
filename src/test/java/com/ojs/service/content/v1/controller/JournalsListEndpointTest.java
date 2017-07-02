@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class JournalControllerTest {
+public class JournalsListEndpointTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -83,13 +83,6 @@ public class JournalControllerTest {
         this.mockMvc.perform(get("/v1/journal")).andDo(print()).
                 andExpect(jsonPath("$.journals[0].description").value("<p>the journal description</p>")).
                 andExpect(jsonPath("$.journals[1].description").value("<p>the journal description 2</p>"));
-    }
-
-    @Test
-    public void shouldReturnJournalOnlineIssn() throws Exception {
-
-        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
-                andExpect(jsonPath("$.journals[0].onlineIssn").value("1365-2435"));
     }
 
 

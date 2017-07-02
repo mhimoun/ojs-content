@@ -40,8 +40,7 @@ public class JournalController {
     public Journal getJournalDefault(@PathVariable long journalId) {
         Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
 
-        Journal journal = new Journal(journalId, "my-path");
-        journal.setDescription("my-description");
+        Journal journal =  journalService.getJournalById(1l);
         journal.add(selfLink);
         return journal;
     }

@@ -6,13 +6,13 @@ import java.util.List;
 @Entity
 public class Journals {
     @Id
-    private long JournalId;
+    private long journalId;
 
     @Column
     private String path;
 
     @Column
-    private Long seq;
+    private long seq;
 
     @Column
     private String primaryLocale;
@@ -20,8 +20,8 @@ public class Journals {
     @Column
     private boolean enabled;
 
-    public Journals(Long journalId, String path, String primaryLocale) {
-        JournalId = journalId;
+    public Journals(long journalId, String path, String primaryLocale) {
+        this.journalId = journalId;
         this.path = path;
         this.primaryLocale = primaryLocale;
     }
@@ -34,7 +34,7 @@ public class Journals {
 
 
     public long getJournalId() {
-        return JournalId;
+        return journalId;
     }
 
     public String getPath() {

@@ -59,5 +59,35 @@ public class JournalRepositoryTest {
         assertThat(settings.getSettingType()).isEqualTo("string");
     }
 
+    @Test
+    public void findByJournalId_shouldReturnNullWhenJournalDoesNotExistInDb() throws Exception {
+
+        Journals journal = repository.findByJournalId(145l);
+
+        assertThat(journal).isNull();
+    }
+
+    @Test
+    public void findByJournalId_shouldReturnJournalWhenExistsInDb() throws Exception {
+
+        Journals journal = repository.findByJournalId(1l);
+
+        assertThat(journal).isNotNull();
+        assertThat(journal.getJournalId()).isEqualTo(1l);
+
+    }
+
+
+    @Test
+    public void findByJournalId_shouldJournalSettingFields() throws Exception {
+
+        Journals journal = repository.findByJournalId(1l);
+
+        assertThat(journal.getEnabled()).isTrue();
+        assertThat(journal.getPath()).isEqualTo("path-context");
+    }
+
+
+
 
 }

@@ -10,4 +10,5 @@ public interface JournalRepository extends Repository<Journals, Long> {
     List<Journals> findByEnabled(boolean enabled);
 
 
+    Journals findByJournalId(long journalId);
 }
