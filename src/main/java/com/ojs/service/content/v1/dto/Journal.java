@@ -9,6 +9,7 @@ public class Journal extends ResourceSupport {
     private String description;
     private String primaryLocale;
     private String onlineIssn;
+    private String printIssn;
     private String abbreviation;
     private String name;
 
@@ -49,6 +50,14 @@ public class Journal extends ResourceSupport {
 
     public void setOnlineIssn(String onlineIssn) {
         this.onlineIssn = onlineIssn;
+    }
+
+    public String getPrintIssn() {
+        return printIssn;
+    }
+
+    public void setPrintIssn(String printIssn) {
+        this.printIssn = printIssn;
     }
 
     public String getAbbreviation() {

@@ -15,7 +15,7 @@ INSERT INTO journal_settings (journal_id, locale, setting_name, setting_value, s
  (1, 'en_US', 'donationFeeDescription', 'Donations of any amount to this journal are gratefully received and provide a means for the editors to continue to provide a journal of the highest quality to its readers.', 'string'),
  (1, 'en_US', 'donationFeeName', 'Donations to journal', 'string'),
  (1, '', 'onlineIssn', '1365-2435', 'string'),
- (1, '', 'printIssn', '1365-2435', 'string'),
+ (1, '', 'printIssn', '1365-2425', 'string'),
  (1, '', 'publisherInstitution', 'name of the organization publishing the journal', 'string');
  
  

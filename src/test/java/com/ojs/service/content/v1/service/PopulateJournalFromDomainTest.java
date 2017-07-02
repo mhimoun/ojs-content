@@ -63,6 +63,20 @@ public class PopulateJournalFromDomainTest {
     }
 
     @Test
+    public void shouldPopulatePrintIssn() throws Exception {
+
+        Journals journalDomain = new Journals(1l, "path1", "en-US");
+        JournalSettings printIssn = new JournalSettings(1l, "", "printIssn", "my printIssn", "string");
+        List<JournalSettings> settings = Arrays.asList(printIssn);
+        journalDomain.setJournalSettings(settings);
+
+
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+
+        assertThat(journalDto.getPrintIssn()).isEqualTo("my printIssn");
+    }
+
+    @Test
     public void shouldPopulateAbbreviation() throws Exception {
 
         Journals journalDomain = new Journals(1l, "path1", "en-US");
