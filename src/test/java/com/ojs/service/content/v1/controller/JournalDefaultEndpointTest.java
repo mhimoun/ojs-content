@@ -67,9 +67,9 @@ public class JournalDefaultEndpointTest {
 
         this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
                 andExpect(jsonPath("$.description").value("<p>the journal description</p>")).
+                andExpect(jsonPath("$.searchDescription").value("brief description of the journal which search engines can display when listing the journal in search results.")).
                 andExpect(jsonPath("$.abbreviation").value("Journal Abbreviation")).
                 andExpect(jsonPath("$.name").value("Test default name")).
-                andExpect(jsonPath("$.description").value("<p>the journal description</p>")).
                 andExpect(jsonPath("$.onlineIssn").value("1365-2435")).
                 andExpect(jsonPath("$.printIssn").value("1365-2425"));
     }
@@ -80,7 +80,9 @@ public class JournalDefaultEndpointTest {
         this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
                 andExpect(jsonPath("$.contactEmail").value("journal-contact@yahoo.fr")).
                 andExpect(jsonPath("$.contactName").value("dupon jard")).
-                andExpect(jsonPath("$.contactPhone").value("0778965404"));
+                andExpect(jsonPath("$.contactPhone").value("0778965404")).
+                andExpect(jsonPath("$.contactTitle").value("DR")).
+                andExpect(jsonPath("$.contactAffiliation").value("this is affliated to global journal"));
     }
 
     @Test

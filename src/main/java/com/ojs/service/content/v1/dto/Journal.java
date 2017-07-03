@@ -15,6 +15,9 @@ public class Journal extends ResourceSupport {
     private String contactName;
     private String contactPhone;
     private String contactEmail;
+    private String contactTitle;
+    private String contactAffiliation;
+    private String searchDescription;
 
 
     public Journal(long journalId, String path) {
@@ -101,5 +104,29 @@ public class Journal extends ResourceSupport {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getContactTitle() {
+        return contactTitle;
+    }
+
+    public void setContactTitle(String contactTitle) {
+        this.contactTitle = contactTitle;
+    }
+
+    public String getContactAffiliation() {
+        return contactAffiliation;
+    }
+
+    public void setContactAffiliation(String contactAffiliation) {
+        this.contactAffiliation = contactAffiliation;
+    }
+
+    public String getSearchDescription() {
+        return searchDescription;
+    }
+
+    public void setSearchDescription(String searchDescription) {
+        this.searchDescription = searchDescription;
     }
 }

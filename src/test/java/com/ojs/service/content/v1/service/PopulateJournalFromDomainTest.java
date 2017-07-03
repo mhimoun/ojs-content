@@ -35,17 +35,19 @@ public class PopulateJournalFromDomainTest {
 
 
     @Test
-    public void shouldPopulateDescription() throws Exception {
+    public void shouldPopulateDescriptions() throws Exception {
 
         Journals journalDomain = new Journals(1l, "path1", "en-US");
         JournalSettings description = new JournalSettings(1l, "en-US", "description", "my description", "string");
-        List<JournalSettings> settings = Arrays.asList(description);
+        JournalSettings searchDescription = new JournalSettings(1l, "en-US", "searchDescription", "some short description", "string");
+        List<JournalSettings> settings = Arrays.asList(description,searchDescription);
         journalDomain.setJournalSettings(settings);
 
 
         Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
 
         assertThat(journalDto.getDescription()).isEqualTo("my description");
+        assertThat(journalDto.getSearchDescription()).isEqualTo("some short description");
     }
 
     @Test
@@ -110,7 +112,9 @@ public class PopulateJournalFromDomainTest {
         JournalSettings phone = new JournalSettings(1l, "", "contactPhone", "some phone", "string");
         JournalSettings name = new JournalSettings(1l, "", "contactName", "some name", "string");
         JournalSettings email = new JournalSettings(1l, "", "contactEmail", "an email", "string");
-        List<JournalSettings> settings = Arrays.asList(phone,name,email);
+        JournalSettings contactAffiliation = new JournalSettings(1l, "", "contactAffiliation", "affiliation", "string");
+        JournalSettings contactTitle = new JournalSettings(1l, "", "contactTitle", "DR", "string");
+        List<JournalSettings> settings = Arrays.asList(phone,name,email,contactAffiliation,contactTitle);
         journalDomain.setJournalSettings(settings);
 
         Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
@@ -118,6 +122,8 @@ public class PopulateJournalFromDomainTest {
         assertThat(journalDto.getContactName()).isEqualTo("some name");
         assertThat(journalDto.getContactPhone()).isEqualTo("some phone");
         assertThat(journalDto.getContactEmail()).isEqualTo("an email");
+        assertThat(journalDto.getContactTitle()).isEqualTo("DR");
+        assertThat(journalDto.getContactAffiliation()).isEqualTo("affiliation");
     }
 
 }
