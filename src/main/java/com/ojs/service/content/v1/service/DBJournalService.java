@@ -31,7 +31,7 @@ public class DBJournalService implements JournalService {
         List<Journals> domainJournals = journalRepository.findByEnabled(true);
 
         for (Journals dj : domainJournals) {
-            dtoJournals.add(PopulateJournalFromDomain.valueOf(dj));
+            dtoJournals.add(PopulateJournalFromDomain.valueOf(dj, false));
         }
 
         return dtoJournals;
@@ -43,6 +43,6 @@ public class DBJournalService implements JournalService {
         Journals domainJournal = journalRepository.findByJournalId(journalId);
         if (domainJournal == null) throw new JournalNotFoundException(journalId);
         else
-            return PopulateJournalFromDomain.valueOf(domainJournal);
+            return PopulateJournalFromDomain.valueOf(domainJournal, true);
     }
 }

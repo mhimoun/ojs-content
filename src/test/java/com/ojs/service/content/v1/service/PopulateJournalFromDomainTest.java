@@ -17,7 +17,7 @@ public class PopulateJournalFromDomainTest {
     public void shouldPopulateJournalIdAndPath() throws Exception {
 
         Journals journalDomain = new Journals(11l, "path1", "en-US");
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,false );
 
         assertThat(journalDto.getJournalId()).isEqualTo(11l);
         assertThat(journalDto.getPath()).isEqualTo("path1");
@@ -28,7 +28,7 @@ public class PopulateJournalFromDomainTest {
     public void shouldPopulatePrimaryLocal() throws Exception {
 
         Journals journalDomain = new Journals(11l, "path1", "en-US");
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,false );
 
         assertThat(journalDto.getPrimaryLocale()).isEqualTo("en-US");
     }
@@ -44,7 +44,7 @@ public class PopulateJournalFromDomainTest {
         journalDomain.setJournalSettings(settings);
 
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,true );
 
         assertThat(journalDto.getDescription()).isEqualTo("my description");
         assertThat(journalDto.getSearchDescription()).isEqualTo("some short description");
@@ -59,7 +59,7 @@ public class PopulateJournalFromDomainTest {
         journalDomain.setJournalSettings(settings);
 
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,true );
 
         assertThat(journalDto.getOnlineIssn()).isEqualTo("my onlineIssn");
     }
@@ -73,7 +73,7 @@ public class PopulateJournalFromDomainTest {
         journalDomain.setJournalSettings(settings);
 
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain, true);
 
         assertThat(journalDto.getPrintIssn()).isEqualTo("my printIssn");
     }
@@ -87,7 +87,7 @@ public class PopulateJournalFromDomainTest {
         journalDomain.setJournalSettings(settings);
 
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain, false);
 
         assertThat(journalDto.getAbbreviation()).isEqualTo("some abbreviation");
     }
@@ -100,7 +100,7 @@ public class PopulateJournalFromDomainTest {
         List<JournalSettings> settings = Arrays.asList(name);
         journalDomain.setJournalSettings(settings);
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,false );
 
         assertThat(journalDto.getName()).isEqualTo("some name");
     }
@@ -117,13 +117,34 @@ public class PopulateJournalFromDomainTest {
         List<JournalSettings> settings = Arrays.asList(phone,name,email,contactAffiliation,contactTitle);
         journalDomain.setJournalSettings(settings);
 
-        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,true );
 
         assertThat(journalDto.getContactName()).isEqualTo("some name");
         assertThat(journalDto.getContactPhone()).isEqualTo("some phone");
         assertThat(journalDto.getContactEmail()).isEqualTo("an email");
         assertThat(journalDto.getContactTitle()).isEqualTo("DR");
         assertThat(journalDto.getContactAffiliation()).isEqualTo("affiliation");
+    }
+    @Test
+    public void shouldNotPopulateContactInfoWhenIncludeAllSetToFalse() throws Exception {
+
+        Journals journalDomain = new Journals(1l, "path1", "en-US");
+        JournalSettings phone = new JournalSettings(1l, "", "contactPhone", "some phone", "string");
+        JournalSettings name = new JournalSettings(1l, "", "contactName", "some name", "string");
+        JournalSettings email = new JournalSettings(1l, "", "contactEmail", "an email", "string");
+        JournalSettings contactAffiliation = new JournalSettings(1l, "", "contactAffiliation", "affiliation", "string");
+        JournalSettings contactTitle = new JournalSettings(1l, "", "contactTitle", "DR", "string");
+        List<JournalSettings> settings = Arrays.asList(phone,name,email,contactAffiliation,contactTitle);
+        journalDomain.setJournalSettings(settings);
+
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain,false);
+
+        assertThat(journalDto.getDescription()).isNull();
+        assertThat(journalDto.getContactName()).isNull();
+        assertThat(journalDto.getContactPhone()).isNull();
+        assertThat(journalDto.getContactEmail()).isNull();
+        assertThat(journalDto.getContactTitle()).isNull();
+        assertThat(journalDto.getContactAffiliation()).isNull();
     }
 
 }

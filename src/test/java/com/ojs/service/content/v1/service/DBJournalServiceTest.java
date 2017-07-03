@@ -79,7 +79,7 @@ public class DBJournalServiceTest {
         assertThat(enabledJournals.get(1).getJournalId()).isEqualTo(12);
         assertThat(enabledJournals.get(0).getPath()).isEqualTo("path1");
         assertThat(enabledJournals.get(0).getPrimaryLocale()).isEqualTo("en-US");
-        assertThat(enabledJournals.get(0).getDescription()).isEqualTo("my-description");
+        assertThat(enabledJournals.get(0).getSearchDescription()).isEqualTo("my-description");
 
     }
 
@@ -109,9 +109,9 @@ public class DBJournalServiceTest {
         List<Journals> journals = new ArrayList<>();
 
         Journals journal = new Journals(1l, "path1", "en-US");
-        JournalSettings description = new JournalSettings(1l, "en-US", "description", "my-description", "string");
+        JournalSettings searchDescription = new JournalSettings(1l, "en-US", "searchDescription", "my-description", "string");
         JournalSettings donationFeeName = new JournalSettings(1l, "en-US", "donationFeeName", "Donations to journal", "string");
-        List<JournalSettings> settings = Arrays.asList(description, donationFeeName);
+        List<JournalSettings> settings = Arrays.asList(searchDescription, donationFeeName);
         journal.setJournalSettings(settings);
         journals.add(journal);
         journals.add(new Journals(12l, "path2", "en-UK"));

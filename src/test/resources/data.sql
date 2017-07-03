@@ -11,6 +11,7 @@ INSERT INTO journal_settings (journal_id, locale, setting_name, setting_value, s
  (1, 'en_US', 'description', '<p>the journal description</p>', 'string'),
  (2, 'en_US', 'description', '<p>the journal description 2</p>', 'string'),
  (1, 'en_US', 'searchDescription', 'brief description of the journal which search engines can display when listing the journal in search results.', 'string'),
+ (2, 'en_US', 'searchDescription', 'brief description.', 'string'),
  (1, 'en_US', 'abbreviation', 'Journal Abbreviation', 'string'),
  (1, 'en_US', 'name', 'Test default name', 'string'),
  (1, '', 'contactEmail', 'journal-contact@yahoo.fr', 'string'),

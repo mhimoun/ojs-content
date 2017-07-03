@@ -81,8 +81,8 @@ public class JournalsListEndpointTest {
     public void shouldReturnJournalDescription() throws Exception {
 
         this.mockMvc.perform(get("/v1/journal")).andDo(print()).
-                andExpect(jsonPath("$.journals[0].description").value("<p>the journal description</p>")).
-                andExpect(jsonPath("$.journals[1].description").value("<p>the journal description 2</p>"));
+                andExpect(jsonPath("$.journals[0].searchDescription").value("brief description of the journal which search engines can display when listing the journal in search results.")).
+                andExpect(jsonPath("$.journals[1].searchDescription").value("brief description."));
     }
 
 
