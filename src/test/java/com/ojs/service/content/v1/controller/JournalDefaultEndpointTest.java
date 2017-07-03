@@ -48,6 +48,9 @@ public class JournalDefaultEndpointTest {
 
         this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
                 andExpect(jsonPath("$.journalId").value(1));
+
+     this.mockMvc.perform(get("/v1/journal/2")).andDo(print()).
+                andExpect(jsonPath("$.journalId").value(2));
     }
 
 
@@ -69,6 +72,12 @@ public class JournalDefaultEndpointTest {
                 andExpect(jsonPath("$.description").value("<p>the journal description</p>")).
                 andExpect(jsonPath("$.onlineIssn").value("1365-2435")).
                 andExpect(jsonPath("$.printIssn").value("1365-2425"));
+    }
+
+    @Test
+    public void shouldReturn404NotFoundResponseWhenJournalDoesNotExist() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/404")).andExpect(status().isNotFound());
     }
 
 
