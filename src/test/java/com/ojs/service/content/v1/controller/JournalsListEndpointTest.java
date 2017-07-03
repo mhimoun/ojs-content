@@ -104,4 +104,27 @@ public class JournalsListEndpointTest {
 
 
 
+
+    @Test
+    public void shouldReturnJournalShortDescription() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].searchDescription").value("brief description of the journal which search engines can display when listing the journal in search results."));
+    }
+
+
+
+
+    @Test
+    public void shouldNotIncludeJournalDetailsInListing() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal")).andDo(print()).
+                andExpect(jsonPath("$.journals[0].description").doesNotExist()).
+                andExpect(jsonPath("$.journals[0].printIssn").doesNotExist()).
+                andExpect(jsonPath("$.journals[0].printIssn").doesNotExist()).
+                andExpect(jsonPath("$.journals[0].contactName").doesNotExist());
+    }
+
+
+
 }

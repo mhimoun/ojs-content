@@ -8,7 +8,7 @@ public class JournalSettings {
 
     @Id
     @Column(name = "journal_id",insertable = false, updatable = false)
-    private Long JournalId;
+    private Long journalId;
 
     @Id
     @Column
@@ -30,7 +30,7 @@ public class JournalSettings {
 
 
     public JournalSettings(Long journalId, String locale, String settingName, String settingValue, String settingType) {
-        JournalId = journalId;
+        this.journalId = journalId;
         this.locale = locale;
         this.settingName = settingName;
         this.settingValue = settingValue;
@@ -40,7 +40,7 @@ public class JournalSettings {
     public JournalSettings(){}
 
     public Long getJournalId() {
-        return JournalId;
+        return journalId;
     }
 
     public String getLocale() {

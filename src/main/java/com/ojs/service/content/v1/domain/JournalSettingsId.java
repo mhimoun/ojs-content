@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class JournalSettingsId implements Serializable {
 
-    private Long JournalId;
+    private Long journalId;
     private String locale;
     private String settingName;
 
