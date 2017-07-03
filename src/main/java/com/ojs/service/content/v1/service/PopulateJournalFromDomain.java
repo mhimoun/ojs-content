@@ -24,6 +24,9 @@ public class PopulateJournalFromDomain {
             if (settingsMap.containsKey("printIssn")) journal.setPrintIssn(settingsMap.get("printIssn").getSettingValue());
             if (settingsMap.containsKey("abbreviation")) journal.setAbbreviation(settingsMap.get("abbreviation").getSettingValue());
             if (settingsMap.containsKey("name")) journal.setName(settingsMap.get("name").getSettingValue());
+            if (settingsMap.containsKey("contactName")) journal.setContactName(settingsMap.get("contactName").getSettingValue());
+            if (settingsMap.containsKey("contactEmail")) journal.setContactEmail(settingsMap.get("contactEmail").getSettingValue());
+            if (settingsMap.containsKey("contactPhone")) journal.setContactPhone(settingsMap.get("contactPhone").getSettingValue());
 
         }
 

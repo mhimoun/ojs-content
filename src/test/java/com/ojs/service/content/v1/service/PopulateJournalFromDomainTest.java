@@ -98,10 +98,26 @@ public class PopulateJournalFromDomainTest {
         List<JournalSettings> settings = Arrays.asList(name);
         journalDomain.setJournalSettings(settings);
 
-
         Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
 
         assertThat(journalDto.getName()).isEqualTo("some name");
+    }
+
+    @Test
+    public void shouldPopulateContactInfo() throws Exception {
+
+        Journals journalDomain = new Journals(1l, "path1", "en-US");
+        JournalSettings phone = new JournalSettings(1l, "", "contactPhone", "some phone", "string");
+        JournalSettings name = new JournalSettings(1l, "", "contactName", "some name", "string");
+        JournalSettings email = new JournalSettings(1l, "", "contactEmail", "an email", "string");
+        List<JournalSettings> settings = Arrays.asList(phone,name,email);
+        journalDomain.setJournalSettings(settings);
+
+        Journal journalDto = PopulateJournalFromDomain.valueOf(journalDomain);
+
+        assertThat(journalDto.getContactName()).isEqualTo("some name");
+        assertThat(journalDto.getContactPhone()).isEqualTo("some phone");
+        assertThat(journalDto.getContactEmail()).isEqualTo("an email");
     }
 
 }

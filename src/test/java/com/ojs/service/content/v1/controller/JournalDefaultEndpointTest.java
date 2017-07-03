@@ -75,6 +75,15 @@ public class JournalDefaultEndpointTest {
     }
 
     @Test
+    public void shouldReturnJournalContactInfo() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
+                andExpect(jsonPath("$.contactEmail").value("journal-contact@yahoo.fr")).
+                andExpect(jsonPath("$.contactName").value("dupon jard")).
+                andExpect(jsonPath("$.contactPhone").value("0778965404"));
+    }
+
+    @Test
     public void shouldReturn404NotFoundResponseWhenJournalDoesNotExist() throws Exception {
 
         this.mockMvc.perform(get("/v1/journal/404")).andExpect(status().isNotFound());

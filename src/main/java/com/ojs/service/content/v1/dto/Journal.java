@@ -12,6 +12,9 @@ public class Journal extends ResourceSupport {
     private String printIssn;
     private String abbreviation;
     private String name;
+    private String contactName;
+    private String contactPhone;
+    private String contactEmail;
 
 
     public Journal(long journalId, String path) {
@@ -74,5 +77,29 @@ public class Journal extends ResourceSupport {
 
     public String getName() {
         return name;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 }
