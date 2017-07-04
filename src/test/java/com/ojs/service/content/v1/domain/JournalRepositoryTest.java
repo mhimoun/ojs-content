@@ -68,6 +68,14 @@ public class JournalRepositoryTest {
     }
 
     @Test
+    public void findByJournalId_shouldReturnOnlyEnabledJournals() throws Exception {
+
+        Journals journal = repository.findByJournalId(3);
+
+        assertThat(journal).isNull();
+    }
+
+    @Test
     public void findByJournalId_shouldReturnJournalWhenExistsInDb() throws Exception {
 
         Journals journal = repository.findByJournalId(1l);

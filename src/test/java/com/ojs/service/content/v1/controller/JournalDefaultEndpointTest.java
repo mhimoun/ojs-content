@@ -91,5 +91,11 @@ public class JournalDefaultEndpointTest {
         this.mockMvc.perform(get("/v1/journal/404")).andExpect(status().isNotFound());
     }
 
+    @Test
+    public void shouldReturn404NotFoundResponseWhenJournalExistButDisabled() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/3")).andExpect(status().isNotFound());
+    }
+
 
 }
