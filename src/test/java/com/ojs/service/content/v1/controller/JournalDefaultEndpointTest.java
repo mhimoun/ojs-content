@@ -42,6 +42,21 @@ public class JournalDefaultEndpointTest {
                 andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/journal/1")));
     }
 
+    @Test
+    public void shouldReturnLinkToJournalsList() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
+                andExpect(jsonPath("$.links[?(@.rel=='journals')].href").value(("http://localhost/v1/journal")));
+    }
+
+    @Test
+    public void shouldReturnLinkToJournalIssues() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1")).andDo(print()).
+                andExpect(jsonPath("$.links[?(@.rel=='issues')].href").value(("http://localhost/v1/journal/1/issues")));
+    }
+
+
 
     @Test
     public void shouldReturnJournalId() throws Exception {

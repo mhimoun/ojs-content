@@ -36,12 +36,27 @@ public class JournalController {
 
     @GetMapping("/{journalId}")
     public Journal getJournalDefault(@PathVariable long journalId) {
-        Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
-
         Journal journal =  journalService.getJournalById(journalId);
+
+
+        Link selfLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withSelfRel();
         journal.add(selfLink);
+
+        Link journalsLink = linkTo(methodOn(JournalController.class).getJournals()).withRel("journals");
+        journal.add(journalsLink);
+
+        Link journalIssuesLink = linkTo(methodOn(JournalController.class).getJournalIssues(journalId)).withRel("issues");
+        journal.add(journalIssuesLink);
+
         return journal;
     }
+
+
+     @GetMapping("/{journalId}/issues")
+    public Journal getJournalIssues(@PathVariable long journalId) {
+        return null;
+    }
+
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
