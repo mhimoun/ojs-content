@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -47,6 +48,24 @@ public class JournalIssuesListEndpointTest {
 
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
                 andExpect(jsonPath("$.links[?(@.rel=='journal')].href").value(("http://localhost/v1/journal/1")));
+    }
+
+
+    @Test
+    public void shouldReturnJournalId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.journalId").value(1));
+
+        this.mockMvc.perform(get("/v1/journal/2/issues")).andDo(print()).
+                andExpect(jsonPath("$.journalId").value(2));
+    }
+
+    @Test
+    public void shouldReturnIssuesInTheJsonResponse() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues", hasSize(2)));
     }
 
 }

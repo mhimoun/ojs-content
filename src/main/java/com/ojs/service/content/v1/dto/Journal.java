@@ -2,6 +2,8 @@ package com.ojs.service.content.v1.dto;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import java.util.List;
+
 
 public class Journal extends ResourceSupport {
     private final long journalId;
@@ -19,6 +21,7 @@ public class Journal extends ResourceSupport {
     private String contactAffiliation;
     private String searchDescription;
 
+    private List<Issue> issues;
 
     public Journal(long journalId, String path) {
         this.journalId = journalId;
@@ -128,5 +131,13 @@ public class Journal extends ResourceSupport {
 
     public void setSearchDescription(String searchDescription) {
         this.searchDescription = searchDescription;
+    }
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 }

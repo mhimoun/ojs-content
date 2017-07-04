@@ -1,5 +1,6 @@
 package com.ojs.service.content.v1.controller;
 
+import com.ojs.service.content.v1.dto.Issue;
 import com.ojs.service.content.v1.dto.Journal;
 import com.ojs.service.content.v1.dto.Journals;
 import com.ojs.service.content.v1.exception.JournalNotFoundException;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -56,6 +59,8 @@ public class JournalController {
     public Journal getJournalIssues(@PathVariable long journalId) {
 
          Journal journal = new Journal(journalId, null);
+
+         journal.setIssues(Arrays.asList(new Issue() , new Issue()));
 
          Link selfLink = linkTo(methodOn(JournalController.class).getJournalIssues(journalId)).withSelfRel();
          journal.add(selfLink);
