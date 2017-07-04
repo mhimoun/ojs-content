@@ -14,7 +14,8 @@ import java.util.List;
 @Service
 public class DBJournalService implements JournalService {
 
-
+    public static final boolean JOURNAL_IS_ENABLED = true ;
+    public static final boolean INCLUDE_ALL_JOURNAL_FIELDS = true ;
     private JournalRepository journalRepository;
 
     @Autowired
@@ -28,10 +29,10 @@ public class DBJournalService implements JournalService {
 
         List<Journal> dtoJournals = new ArrayList<>();
 
-        List<Journals> domainJournals = journalRepository.findByEnabled(true);
+        List<Journals> domainJournals = journalRepository.findByEnabled(JOURNAL_IS_ENABLED);
 
         for (Journals dj : domainJournals) {
-            dtoJournals.add(PopulateJournalFromDomain.valueOf(dj, false));
+            dtoJournals.add(PopulateJournalFromDomain.valueOf(dj, !INCLUDE_ALL_JOURNAL_FIELDS));
         }
 
         return dtoJournals;
@@ -40,9 +41,9 @@ public class DBJournalService implements JournalService {
     @Override
     public Journal getJournalById(long journalId) {
 
-        Journals domainJournal = journalRepository.findByJournalId(journalId);
+        Journals domainJournal = journalRepository.findByJournalIdAndEnabled(journalId, JOURNAL_IS_ENABLED);
         if (domainJournal == null) throw new JournalNotFoundException(journalId);
         else
-            return PopulateJournalFromDomain.valueOf(domainJournal, true);
+            return PopulateJournalFromDomain.valueOf(domainJournal, INCLUDE_ALL_JOURNAL_FIELDS);
     }
 }

@@ -12,5 +12,5 @@ public interface JournalService {
     List<Journal> getEnabledJournals();
 
 
-    Journal getJournalById(long l);
+    Journal getJournalById(long journalId);
 }

@@ -95,7 +95,7 @@ public class DBJournalServiceTest {
     @Test
     public void getJournalById_shouldReturnJournalWhenFoundInDB() throws Exception {
 
-        when(journalRepository.findByJournalId(5l)).thenReturn(new Journals(5l, "some-path", "en"));
+        when(journalRepository.findByJournalIdAndEnabled(5l, true)).thenReturn(new Journals(5l, "some-path", "en"));
 
         Journal journal = journalService.getJournalById(5l);
 

@@ -62,7 +62,7 @@ public class JournalRepositoryTest {
     @Test
     public void findByJournalId_shouldReturnNullWhenJournalDoesNotExistInDb() throws Exception {
 
-        Journals journal = repository.findByJournalId(145l);
+        Journals journal = repository.findByJournalIdAndEnabled(145l, true);
 
         assertThat(journal).isNull();
     }
@@ -70,7 +70,7 @@ public class JournalRepositoryTest {
     @Test
     public void findByJournalId_shouldReturnOnlyEnabledJournals() throws Exception {
 
-        Journals journal = repository.findByJournalId(3);
+        Journals journal = repository.findByJournalIdAndEnabled(3, true);
 
         assertThat(journal).isNull();
     }
@@ -78,7 +78,7 @@ public class JournalRepositoryTest {
     @Test
     public void findByJournalId_shouldReturnJournalWhenExistsInDb() throws Exception {
 
-        Journals journal = repository.findByJournalId(1l);
+        Journals journal = repository.findByJournalIdAndEnabled(1l, true);
 
         assertThat(journal).isNotNull();
         assertThat(journal.getJournalId()).isEqualTo(1l);
@@ -89,7 +89,7 @@ public class JournalRepositoryTest {
     @Test
     public void findByJournalId_shouldJournalSettingFields() throws Exception {
 
-        Journals journal = repository.findByJournalId(1l);
+        Journals journal = repository.findByJournalIdAndEnabled(1l, true);
 
         assertThat(journal.getEnabled()).isTrue();
         assertThat(journal.getPath()).isEqualTo("path-context");
