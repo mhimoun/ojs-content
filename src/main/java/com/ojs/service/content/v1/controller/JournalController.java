@@ -54,7 +54,16 @@ public class JournalController {
 
      @GetMapping("/{journalId}/issues")
     public Journal getJournalIssues(@PathVariable long journalId) {
-        return null;
+
+         Journal journal = new Journal(journalId, null);
+
+         Link selfLink = linkTo(methodOn(JournalController.class).getJournalIssues(journalId)).withSelfRel();
+         journal.add(selfLink);
+
+         Link journalLink = linkTo(methodOn(JournalController.class).getJournalDefault(journalId)).withRel("journal");
+         journal.add(journalLink);
+
+         return journal;
     }
 
 
