@@ -65,7 +65,7 @@ public class Issues {
     @Column
     private String originalStyleFileName;
 
-    @OneToMany(mappedBy = "issue")
+    @OneToMany(mappedBy = "issues")
     List<IssueSettings> issueSettings;
 
 
