@@ -100,10 +100,18 @@ public class JournalIssuesListEndpointTest {
 
 
     @Test
-    public void shouldReturnIsTitle() throws Exception {
+    public void shouldReturnTitle() throws Exception {
 
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
-                andExpect(jsonPath("$.issues[0].title").value("some title"));
+                andExpect(jsonPath("$.issues[0].title").value("The title of the issue"));
+
+    }
+
+    @Test
+    public void shouldReturnDescription() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].description").value("<p>some description of the issue</p>"));
 
     }
 

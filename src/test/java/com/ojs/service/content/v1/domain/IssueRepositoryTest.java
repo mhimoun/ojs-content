@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -36,13 +37,13 @@ public class IssueRepositoryTest {
         assertThat(issues.get(0).getYear()).isEqualTo((short) 2016);
     }
 
-
     @Test
     public void findPublished_ShouldReturnIssuesIsCurrent() throws Exception {
         List<Issues> issues = repository.findByPublished(true);
         assertThat(issues.get(0).isCurrent()).isEqualTo(true);
         assertThat(issues.get(1).isCurrent()).isEqualTo(false);
     }
+
 
     @Test
     public void findPublished_ShouldReturnIssuesDates() throws Exception {
@@ -64,6 +65,13 @@ public class IssueRepositoryTest {
         assertThat(issues.get(0).isShowYear()).isEqualTo(true);
         assertThat(issues.get(0).getOriginalStyleFileName()).isEqualTo("org file");
         assertThat(issues.get(0).getStyleFileName()).isEqualTo("file1");
+    }
+
+    @Test
+    public void findPublished_ShouldReturnAllPublishedIssuesWithSettings() throws Exception {
+        List<Issues> issues = repository.findByPublished(true);
+        assertNotNull("Journal setting must not be null", issues.get(0).getIssueSettings());
+        assertThat(issues.get(0).getIssueSettings().size()).isGreaterThan(3);
     }
 
 
