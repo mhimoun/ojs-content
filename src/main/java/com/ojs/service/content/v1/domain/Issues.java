@@ -3,7 +3,9 @@ package com.ojs.service.content.v1.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Issues {
@@ -62,6 +64,10 @@ public class Issues {
 
     @Column
     private String originalStyleFileName;
+
+    @OneToMany(mappedBy = "issue")
+    List<IssueSettings> issueSettings;
+
 
     public Issues() {
     }
@@ -210,5 +216,11 @@ public class Issues {
         this.originalStyleFileName = originalStyleFileName;
     }
 
+    public List<IssueSettings> getIssueSettings() {
+        return issueSettings;
+    }
 
+    public void setIssueSettings(List<IssueSettings> issueSettings) {
+        this.issueSettings = issueSettings;
+    }
 }

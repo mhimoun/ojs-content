@@ -9,6 +9,9 @@ import java.util.Date;
 public class Issue extends ResourceSupport {
     private long journalId;
     private long issueId;
+    private String title;
+    private String description;
+
     private short volume;
     private String number;
     private short year;
@@ -32,6 +35,22 @@ public class Issue extends ResourceSupport {
     }
 
     public Issue() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getJournalId() {

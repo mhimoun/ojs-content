@@ -78,7 +78,6 @@ public class JournalIssuesListEndpointTest {
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
                 andExpect(jsonPath("$.issues[0].issueId").value(1)).
                 andExpect(jsonPath("$.issues[1].issueId").value(3));
-
     }
 
 
@@ -97,10 +96,16 @@ public class JournalIssuesListEndpointTest {
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
                 andExpect(jsonPath("$.issues[0].published").value("true")).
                 andExpect(jsonPath("$.issues[1].published").value("true"));
-
     }
 
 
+    @Test
+    public void shouldReturnIsTitle() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].title").value("some title"));
+
+    }
 
 
 }

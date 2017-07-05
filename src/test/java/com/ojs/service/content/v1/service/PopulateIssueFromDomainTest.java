@@ -1,12 +1,16 @@
 package com.ojs.service.content.v1.service;
 
 
+import com.ojs.service.content.v1.domain.IssueSettings;
 import com.ojs.service.content.v1.domain.Issues;
+import com.ojs.service.content.v1.domain.JournalSettings;
 import com.ojs.service.content.v1.dto.Issue;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -81,7 +85,7 @@ public class PopulateIssueFromDomainTest {
     }
 
     @Test
-    public void shouldCreateIssueWithSatusAndStyleFileFromDomain() throws Exception {
+    public void shouldCreateIssueWithStatusAndStyleFileFromDomain() throws Exception {
 
         Issues issuesDomain = new Issues();
         issuesDomain.setAccessStatus((short) 5);
@@ -93,6 +97,24 @@ public class PopulateIssueFromDomainTest {
         assertThat(issue.getAccessStatus()).isEqualTo((short) 5);
         assertThat(issue.getStyleFileName()).isEqualTo("fileName");
         assertThat(issue.getOriginalStyleFileName()).isEqualTo("org fileName");
+
+    }
+
+    @Test
+    public void shouldPopulateTitleAndDescription() throws Exception {
+
+        Issues issuesDomain = new Issues();
+        IssueSettings description = new IssueSettings(1l, "en-US", "description", "my description", "string");
+        IssueSettings title = new IssueSettings(1l, "en-US", "title", "my title", "string");
+        List<IssueSettings> settings = Arrays.asList(description,title);
+
+        issuesDomain.setIssueSettings(settings);
+
+
+        Issue issue = PopulateIssueFromDomain.valueOf(issuesDomain);
+
+        assertThat(issue.getDescription()).isEqualTo("my description");
+        assertThat(issue.getTitle()).isEqualTo("my title");
 
     }
 
