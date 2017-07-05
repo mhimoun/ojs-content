@@ -4,6 +4,7 @@ import com.ojs.service.content.v1.dto.Issue;
 import com.ojs.service.content.v1.dto.Journal;
 import com.ojs.service.content.v1.dto.Journals;
 import com.ojs.service.content.v1.exception.JournalNotFoundException;
+import com.ojs.service.content.v1.service.IssueService;
 import com.ojs.service.content.v1.service.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -22,6 +23,9 @@ public class JournalController {
 
     @Autowired
     private JournalService journalService;
+
+    @Autowired
+    private IssueService issueService;
 
     @GetMapping
     public Journals getJournals() {
@@ -60,7 +64,7 @@ public class JournalController {
 
          Journal journal = new Journal(journalId, null);
 
-         journal.setIssues(Arrays.asList(new Issue() , new Issue()));
+         journal.setIssues(issueService.getPublishedIssues());
 
          Link selfLink = linkTo(methodOn(JournalController.class).getJournalIssues(journalId)).withSelfRel();
          journal.add(selfLink);

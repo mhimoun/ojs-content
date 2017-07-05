@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -67,5 +68,39 @@ public class JournalIssuesListEndpointTest {
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
                 andExpect(jsonPath("$.issues", hasSize(2)));
     }
+
+
+
+
+    @Test
+    public void shouldReturnIssueId() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].issueId").value(1)).
+                andExpect(jsonPath("$.issues[1].issueId").value(3));
+
+    }
+
+
+    @Test
+    public void shouldReturnVolumeNumberAndYear() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].volume").value(3)).
+                andExpect(jsonPath("$.issues[0].year").value(2016)).
+                andExpect(jsonPath("$.issues[0].number").value("12"));
+
+    }
+    @Test
+    public void shouldReturnIsPublished() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].published").value("true")).
+                andExpect(jsonPath("$.issues[1].published").value("true"));
+
+    }
+
+
+
 
 }
