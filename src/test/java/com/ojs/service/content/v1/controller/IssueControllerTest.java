@@ -83,4 +83,17 @@ public class IssueControllerTest {
 
 
 
+    @Test
+    public void shouldReturn404NotFoundResponseWhenIssueDoesNotExistInDb() throws Exception {
+
+        this.mockMvc.perform(get("/v1/issue/404")).andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void shouldReturn404NotFoundResponseWhenIssueIsNotPublished() throws Exception {
+
+        this.mockMvc.perform(get("/v1/issue/2")).andExpect(status().isNotFound());
+    }
+
+
 }
