@@ -123,6 +123,14 @@ public class JournalIssuesListEndpointTest {
                 andExpect(jsonPath("$.issues[1].datePublished").value("29-06-2017 14:18:00"));
     }
 
+    @Test
+    public void shouldReturnIssueCoverImage() throws Exception {
+
+        this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
+                andExpect(jsonPath("$.issues[0].coverImage").value("cover_issue_1_en_US.jpg")).
+                andExpect(jsonPath("$.issues[0].coverImageAltText").value("Alternate text"));
+    }
+
 
 
 

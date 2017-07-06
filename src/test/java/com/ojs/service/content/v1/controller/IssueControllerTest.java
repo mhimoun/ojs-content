@@ -1,6 +1,7 @@
 package com.ojs.service.content.v1.controller;
 
 
+import com.ojs.service.content.v1.domain.Issues;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -75,6 +79,29 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.description").value("<p>some description of the issue</p>")).
                 andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
                 andExpect(jsonPath("$.number").value("12"));
+    }
+
+    @Test
+    public void shouldReturnExtraIssueInfo() throws Exception {
+
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.accessStatus").value(1)).
+                andExpect(jsonPath("$.showNumber").value("true")).
+                andExpect(jsonPath("$.showTitle").value("true")).
+                andExpect(jsonPath("$.showVolume").value("true")).
+                andExpect(jsonPath("$.showYear").value("true")).
+                andExpect(jsonPath("$.originalStyleFileName").value("org file")).
+                andExpect(jsonPath("$.styleFileName").value("file1"));
+    }
+
+    @Test
+    public void shouldReturnIssueDates() throws Exception {
+
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
+                andExpect(jsonPath("$.lastModified").value("29-06-2017 14:18:00")).
+                andExpect(jsonPath("$.dateNotified").value("22-07-2017 10:12:05")).
+                andExpect(jsonPath("$.openAccessDate").value("07-07-2017 06:07:07"));
     }
 
     @Test
