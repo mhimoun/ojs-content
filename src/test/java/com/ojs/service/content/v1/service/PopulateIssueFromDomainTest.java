@@ -134,5 +134,17 @@ public class PopulateIssueFromDomainTest {
         assertThat(issue.getCoverImageAltText()).isEqualTo("my alt text");
 
     }
+  @Test
+    public void shouldPopulatePublisherId() throws Exception {
+
+        Issues issuesDomain = new Issues();
+        IssueSettings pubId = new IssueSettings(1l, "", "pub-id::publisher-id", "publisher-id", "string");
+        List<IssueSettings> settings = Arrays.asList(pubId);
+
+        issuesDomain.setIssueSettings(settings);
+
+        Issue issue = PopulateIssueFromDomain.valueOf(issuesDomain);
+        assertThat(issue.getPublisherId()).isEqualTo("publisher-id");
+    }
 
 }

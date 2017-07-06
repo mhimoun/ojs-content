@@ -26,6 +26,7 @@ public class PopulateIssueFromDomain {
             if (settingsMap.containsKey("title")) issue.setTitle(settingsMap.get("title").getSettingValue());
             if (settingsMap.containsKey("coverImageAltText")) issue.setCoverImageAltText(settingsMap.get("coverImageAltText").getSettingValue());
             if (settingsMap.containsKey("coverImage")) issue.setCoverImage(settingsMap.get("coverImage").getSettingValue());
+            if (settingsMap.containsKey("pub-id::publisher-id")) issue.setPublisherId(settingsMap.get("pub-id::publisher-id").getSettingValue());
         }
         return issue;
     }

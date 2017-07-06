@@ -122,5 +122,11 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.coverImageAltText").value("Alternate text"));
     }
 
+    @Test
+    public void shouldReturnIssuePublisherId() throws Exception {
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.publisherId").value("http://localhost/ojs/index.php/issue-public-url-id"));
+    }
+
 
 }

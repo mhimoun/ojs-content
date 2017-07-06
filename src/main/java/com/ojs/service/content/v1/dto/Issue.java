@@ -30,6 +30,7 @@ public class Issue extends ResourceSupport {
     private String originalStyleFileName;
     private String coverImage;
     private String coverImageAltText;
+    private String publisherId;
 
     public Issue(long issueId, long journalId) {
         this.issueId = issueId;
@@ -213,5 +214,13 @@ public class Issue extends ResourceSupport {
 
     public void setCoverImageAltText(String coverImageAltText) {
         this.coverImageAltText = coverImageAltText;
+    }
+
+    public String getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(String publisherId) {
+        this.publisherId = publisherId;
     }
 }
