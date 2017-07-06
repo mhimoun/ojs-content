@@ -25,28 +25,28 @@ public class IssueControllerTest {
     @Test
     public void shouldReturn200OKResponseOnDefaultIssueEndpoint() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/v1/issue/1")).andExpect(status().isOk());
     }
 
     @Test
     public void shouldReturnJsonResponse() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+        this.mockMvc.perform(get("/v1/issue/3")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
 
     @Test
     public void shouldReturnLinkToSelf() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).
-                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/issue/5")));
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/issue/1")));
     }
 
 
     @Test
     public void shouldReturnLinkToJournal() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).
+        this.mockMvc.perform(get("/v1/issue/1")).
                 andExpect(jsonPath("$.links[?(@.rel=='journal')].href").value(("http://localhost/v1/journal/1")));
     }
 
@@ -55,7 +55,7 @@ public class IssueControllerTest {
     @Test
     public void shouldReturnJournalId() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).
+        this.mockMvc.perform(get("/v1/issue/1")).
                 andExpect(jsonPath("$.journalId").value(1));
     }
 
@@ -63,9 +63,24 @@ public class IssueControllerTest {
     @Test
     public void shouldReturnIssueId() throws Exception {
 
-        this.mockMvc.perform(get("/v1/issue/5")).
-                andExpect(jsonPath("$.issueId").value(5));
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.issueId").value(1));
     }
+
+    @Test
+    public void shouldReturnMainIssueInfo() throws Exception {
+
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.volume").value(3)).
+                andExpect(jsonPath("$.year").value(2016)).
+                andExpect(jsonPath("$.published").value("true")).
+                andExpect(jsonPath("$.title").value("The title of the issue")).
+                andExpect(jsonPath("$.description").value("<p>some description of the issue</p>")).
+                andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
+                andExpect(jsonPath("$.number").value("12"));
+
+    }
+
 
 
 }

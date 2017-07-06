@@ -75,4 +75,77 @@ public class IssueRepositoryTest {
     }
 
 
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnNullWhenIssueDoesNotExistInDb() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(555l, true);
+
+        assertThat(issue).isNull();
+    }
+
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnIssueWhenInDb() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(1l, true);
+
+        assertThat(issue).isNotNull();
+    }
+
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnNonPublishedIssueWhenInDb() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(2l, false);
+
+        assertThat(issue).isNotNull();
+    }
+
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnNullWhenIssueInDbButNotPublshed() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(2l, true);
+
+        assertThat(issue).isNull();
+    }
+
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnIssueIdAndJournalId() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(1, true);
+
+        assertThat(issue.getIssueId()).isEqualTo(1);
+        assertThat(issue.getJournalId()).isEqualTo(1);
+
+    }
+    @Test
+    public void findByIssueIdAndPublished_shouldReturnIssueMainDetails() throws Exception {
+
+        Issues issue = repository.findByIssueIdAndPublished(1, true);
+
+        assertThat(issue.getAccessStatus()).isEqualTo((short) 1);
+        assertThat(issue.isShowNumber()).isEqualTo(true);
+        assertThat(issue.isShowTitle()).isEqualTo(true);
+        assertThat(issue.isShowVolume()).isEqualTo(true);
+        assertThat(issue.isShowYear()).isEqualTo(true);
+        assertThat(issue.getOriginalStyleFileName()).isEqualTo("org file");
+        assertThat(issue.getStyleFileName()).isEqualTo("file1");
+
+    }
+
+    @Test
+    public void findByIssueIdAndPublished_ShouldReturnIssuesIsCurrent() throws Exception {
+        Issues issue = repository.findByIssueIdAndPublished(1,true);
+        assertThat(issue.isCurrent()).isEqualTo(true);
+        assertThat(issue.isPublished()).isEqualTo(true);
+    }
+
+
+    @Test
+    public void findByIssueIdAndPublished_ShouldReturnIssuesDates() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Issues issue = repository.findByIssueIdAndPublished(1,true);
+        assertThat(issue.getDatePublished()).hasSameTimeAs(sdf.parse("2017-06-29 15:18:00"));
+        assertThat(issue.getLastModified()).hasSameTimeAs(sdf.parse("2017-06-29 15:18:00"));
+        assertThat(issue.getDateNotified()).hasSameTimeAs(sdf.parse("2017-07-22 11:12:05"));
+        assertThat(issue.getOpenAccessDate()).hasSameTimeAs(sdf.parse("2017-07-07 07:07:07"));
+    }
 }

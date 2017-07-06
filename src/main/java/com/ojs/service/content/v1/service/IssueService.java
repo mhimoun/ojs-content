@@ -7,4 +7,6 @@ import java.util.List;
 public interface IssueService {
 
     List<Issue> getPublishedIssues();
+
+    Issue getIssueById(long issueId);
 }

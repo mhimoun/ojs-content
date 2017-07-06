@@ -10,4 +10,5 @@ public interface IssueRepository extends Repository<Issues, Long> {
     List<Issues> findByPublished(boolean published);
 
 
+    Issues findByIssueIdAndPublished(long issueId, boolean published);
 }
