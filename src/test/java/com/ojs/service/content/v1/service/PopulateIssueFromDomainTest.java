@@ -117,5 +117,22 @@ public class PopulateIssueFromDomainTest {
         assertThat(issue.getTitle()).isEqualTo("my title");
 
     }
+    @Test
+    public void shouldPopulateCoverImage() throws Exception {
+
+        Issues issuesDomain = new Issues();
+        IssueSettings coverImage = new IssueSettings(1l, "", "coverImage", "my-image", "string");
+        IssueSettings coverImageAltText = new IssueSettings(1l, "en-US", "coverImageAltText", "my alt text", "string");
+        List<IssueSettings> settings = Arrays.asList(coverImage,coverImageAltText);
+
+        issuesDomain.setIssueSettings(settings);
+
+
+        Issue issue = PopulateIssueFromDomain.valueOf(issuesDomain);
+
+        assertThat(issue.getCoverImage()).isEqualTo("my-image");
+        assertThat(issue.getCoverImageAltText()).isEqualTo("my alt text");
+
+    }
 
 }

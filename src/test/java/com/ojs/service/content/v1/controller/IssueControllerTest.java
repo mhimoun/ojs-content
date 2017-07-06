@@ -42,7 +42,6 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/issue/1")));
     }
 
-
     @Test
     public void shouldReturnLinkToJournal() throws Exception {
 
@@ -51,14 +50,12 @@ public class IssueControllerTest {
     }
 
 
-
     @Test
     public void shouldReturnJournalId() throws Exception {
 
         this.mockMvc.perform(get("/v1/issue/1")).
                 andExpect(jsonPath("$.journalId").value(1));
     }
-
 
     @Test
     public void shouldReturnIssueId() throws Exception {
@@ -78,21 +75,23 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.description").value("<p>some description of the issue</p>")).
                 andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
                 andExpect(jsonPath("$.number").value("12"));
-
     }
-
-
 
     @Test
     public void shouldReturn404NotFoundResponseWhenIssueDoesNotExistInDb() throws Exception {
-
         this.mockMvc.perform(get("/v1/issue/404")).andExpect(status().isNotFound());
     }
 
     @Test
     public void shouldReturn404NotFoundResponseWhenIssueIsNotPublished() throws Exception {
-
         this.mockMvc.perform(get("/v1/issue/2")).andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void shouldReturnIssueCoverImage() throws Exception {
+        this.mockMvc.perform(get("/v1/issue/1")).
+                andExpect(jsonPath("$.coverImage").value("cover_issue_1_en_US.jpg")).
+                andExpect(jsonPath("$.coverImageAltText").value("Alternate text"));
     }
 
 

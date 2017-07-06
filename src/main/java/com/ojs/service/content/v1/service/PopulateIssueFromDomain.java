@@ -24,6 +24,8 @@ public class PopulateIssueFromDomain {
             Map<String, IssueSettings> settingsMap = issuesDomain.getIssueSettings().stream().collect(toMap(IssueSettings::getSettingName, Function.identity()));
             if (settingsMap.containsKey("description")) issue.setDescription(settingsMap.get("description").getSettingValue());
             if (settingsMap.containsKey("title")) issue.setTitle(settingsMap.get("title").getSettingValue());
+            if (settingsMap.containsKey("coverImageAltText")) issue.setCoverImageAltText(settingsMap.get("coverImageAltText").getSettingValue());
+            if (settingsMap.containsKey("coverImage")) issue.setCoverImage(settingsMap.get("coverImage").getSettingValue());
         }
         return issue;
     }

@@ -28,6 +28,8 @@ public class Issue extends ResourceSupport {
     private boolean showTitle;
     private String styleFileName;
     private String originalStyleFileName;
+    private String coverImage;
+    private String coverImageAltText;
 
     public Issue(long issueId, long journalId) {
         this.issueId = issueId;
@@ -195,5 +197,21 @@ public class Issue extends ResourceSupport {
 
     public void setOriginalStyleFileName(String originalStyleFileName) {
         this.originalStyleFileName = originalStyleFileName;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    public String getCoverImageAltText() {
+        return coverImageAltText;
+    }
+
+    public void setCoverImageAltText(String coverImageAltText) {
+        this.coverImageAltText = coverImageAltText;
     }
 }
