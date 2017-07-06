@@ -5,26 +5,26 @@ import org.springframework.hateoas.ResourceSupport;
 
 public class Article extends ResourceSupport {
 
-    private final int journalId;
-    private final int issueId;
-    private final int articleId;
+    private final long journalId;
+    private final long issueId;
+    private final long articleId;
 
 
-    public Article(int articleId, int issueId, int journalId) {
+    public Article(long articleId, long issueId, long journalId) {
         this.journalId = journalId;
         this.issueId = issueId;
         this.articleId = articleId;
     }
 
-    public int getJournalId() {
+    public long getJournalId() {
         return journalId;
     }
 
-    public int getIssueId() {
+    public long getIssueId() {
         return issueId;
     }
 
-    public int getArticleId() {
+    public long getArticleId() {
         return articleId;
     }
 }
