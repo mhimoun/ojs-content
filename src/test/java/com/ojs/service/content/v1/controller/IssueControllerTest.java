@@ -90,6 +90,7 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.showTitle").value("true")).
                 andExpect(jsonPath("$.showVolume").value("true")).
                 andExpect(jsonPath("$.showYear").value("true")).
+                andExpect(jsonPath("$.current").value("true")).
                 andExpect(jsonPath("$.originalStyleFileName").value("org file")).
                 andExpect(jsonPath("$.styleFileName").value("file1"));
     }
