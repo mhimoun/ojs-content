@@ -2,12 +2,15 @@ package com.ojs.service.content.v1.dto;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import java.util.Date;
+
 
 public class Article extends ResourceSupport {
 
     private final long journalId;
     private final long issueId;
     private final long articleId;
+    private Date datePublished;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -26,5 +29,13 @@ public class Article extends ResourceSupport {
 
     public long getArticleId() {
         return articleId;
+    }
+
+    public Date getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(Date datePublished) {
+        this.datePublished = datePublished;
     }
 }

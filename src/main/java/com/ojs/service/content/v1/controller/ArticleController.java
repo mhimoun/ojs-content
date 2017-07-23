@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -18,6 +20,7 @@ public class ArticleController {
     public Article getArticleDefault(@PathVariable long articleId) {
 
         Article article = new Article(articleId, 10, 1);
+        article.setDatePublished(new Date());
 
         populateArticleHateoasLinks(article, articleId);
         return article;

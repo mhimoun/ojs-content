@@ -42,3 +42,11 @@ INSERT INTO issue_settings (issue_id, locale, setting_name, setting_value, setti
 (1, 'en_US', 'coverImageAltText', 'Alternate text', 'string'),
 (1, 'en_US', 'description', '<p>some description of the issue</p>', 'string'),
 (1, 'en_US', 'title', 'The title of the issue', 'string');
+
+INSERT INTO submissions (submission_id, locale, context_id, section_id, language, citations, date_submitted, last_modified, date_status_modified, status, submission_progress, current_round, pages, fast_tracked, hide_author, stage_id) VALUES
+(1, 'en_US', 1, 1, '', NULL, NULL, '2017-05-15 13:45:38', '2017-05-15 13:45:38', 1, 2, 1, NULL, 0, 0, 1),
+(2, 'en_US', 1, 1, '', NULL, '2017-06-16 15:05:54', '2017-06-29 15:18:00', '2017-06-29 15:18:00', 3, 0, 1, '45', 0, 0, 5);
+
+
+INSERT INTO published_submissions (published_submission_id, submission_id, issue_id, date_published, seq, access_status) VALUES
+(1, 2, 1, '2017-06-29 00:00:00', 1, 0);
