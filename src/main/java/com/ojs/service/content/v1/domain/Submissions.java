@@ -13,9 +13,6 @@ public class Submissions {
     private String locale;
 
     @Column
-    private long issueId;
-
-    @Column
     private long contextId;
 
     @Column
