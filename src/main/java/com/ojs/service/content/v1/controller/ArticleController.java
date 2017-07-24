@@ -23,7 +23,7 @@ public class ArticleController {
     @GetMapping("/v1/article/{articleId}")
     public Article getArticleDefault(@PathVariable long articleId) {
 
-        Article article =articleService.getArticleById(articleId);
+        Article article = articleService.getArticleById(articleId);
         populateArticleHateoasLinks(article);
         return article;
     }

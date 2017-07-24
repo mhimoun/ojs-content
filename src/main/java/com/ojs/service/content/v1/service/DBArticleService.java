@@ -16,23 +16,29 @@ public class DBArticleService implements ArticleService {
     private final ArticleRepository articleRepository;
 
     public DBArticleService(ArticleRepository articleRepository) {
-        this.articleRepository= articleRepository;
+        this.articleRepository = articleRepository;
     }
 
     @Override
     public List<Article> getPublishedArticles() {
 
         List<Article> articles = new ArrayList<>();
-        List<Submissions> publishedSubmissions = articleRepository.findByStatus((short) 3);
+        List<Submissions> publishedSubmissions = articleRepository.findByStatus(ArticleRepository.ARTICLE_STATUS_PUBLISHED);
 
-        for (Submissions submissions: publishedSubmissions){
-            articles.add(new Article(1,1,1));
+        for (Submissions submissions : publishedSubmissions) {
+            articles.add(populateArticleFromSubmission(submissions));
         }
         return articles;
     }
 
     @Override
     public Article getArticleById(long articleId) {
-        return null;
+        return populateArticleFromSubmission(articleRepository.findBySubmissionIdAndStatus(articleId, ArticleRepository.ARTICLE_STATUS_PUBLISHED));
+    }
+
+    private Article populateArticleFromSubmission(Submissions submissions) {
+        Article article = new Article(submissions.getSubmissionId(), submissions.getPublishedSubmission().getIssueId(), 0);
+
+        return article;
     }
 }

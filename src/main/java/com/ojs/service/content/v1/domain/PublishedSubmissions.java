@@ -31,4 +31,74 @@ public class PublishedSubmissions {
     @OneToOne(mappedBy = "publishedSubmission")
     private Submissions submission;
 
+
+    public PublishedSubmissions(long publishedSubmissionId, long submissionId, long issueId, Date datePublished, long seq, short accessStatus) {
+        this.publishedSubmissionId = publishedSubmissionId;
+        this.submissionId = submissionId;
+        this.issueId = issueId;
+        this.datePublished = datePublished;
+        this.seq = seq;
+        this.accessStatus = accessStatus;
+    }
+
+    public PublishedSubmissions() {
+
+    }
+
+
+    public long getPublishedSubmissionId() {
+        return publishedSubmissionId;
+    }
+
+    public void setPublishedSubmissionId(long publishedSubmissionId) {
+        this.publishedSubmissionId = publishedSubmissionId;
+    }
+
+    public long getSubmissionId() {
+        return submissionId;
+    }
+
+    public void setSubmissionId(long submissionId) {
+        this.submissionId = submissionId;
+    }
+
+    public long getIssueId() {
+        return issueId;
+    }
+
+    public void setIssueId(long issueId) {
+        this.issueId = issueId;
+    }
+
+    public Date getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(Date datePublished) {
+        this.datePublished = datePublished;
+    }
+
+    public long getSeq() {
+        return seq;
+    }
+
+    public void setSeq(long seq) {
+        this.seq = seq;
+    }
+
+    public short getAccessStatus() {
+        return accessStatus;
+    }
+
+    public void setAccessStatus(short accessStatus) {
+        this.accessStatus = accessStatus;
+    }
+
+    public Submissions getSubmission() {
+        return submission;
+    }
+
+    public void setSubmission(Submissions submission) {
+        this.submission = submission;
+    }
 }
