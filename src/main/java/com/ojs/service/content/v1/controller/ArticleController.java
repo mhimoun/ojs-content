@@ -31,12 +31,10 @@ public class ArticleController {
     private void populateArticleHateoasLinks(Article article) {
 
         Link selfLink = linkTo(methodOn(ArticleController.class).getArticleDefault(article.getArticleId())).withSelfRel();
-        Link issueLink = linkTo(methodOn(IssueController.class).getIssueDefault(10)).withRel("issue");
-        Link journalLink = linkTo(methodOn(JournalController.class).getJournalDefault(1)).withRel("journal");
+        Link issueLink = linkTo(methodOn(IssueController.class).getIssueDefault(article.getIssueId())).withRel("issue");
 
         article.add(selfLink);
         article.add(issueLink);
-        article.add(journalLink);
 
 
     }

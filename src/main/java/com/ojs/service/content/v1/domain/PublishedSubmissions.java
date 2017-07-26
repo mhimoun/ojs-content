@@ -1,9 +1,6 @@
 package com.ojs.service.content.v1.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -28,7 +25,8 @@ public class PublishedSubmissions {
     private short accessStatus;
 
 
-    @OneToOne(mappedBy = "publishedSubmission")
+    @OneToOne
+    @JoinColumn(name = "submissionId",insertable = false, updatable = false)
     private Submissions submission;
 
 

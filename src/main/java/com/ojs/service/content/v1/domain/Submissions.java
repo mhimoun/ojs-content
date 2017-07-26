@@ -60,8 +60,7 @@ public class Submissions {
     @Column
     private long stageId;
 
-    @OneToOne
-    @JoinColumn(name = "publishedSubmissionId")
+    @OneToOne(mappedBy = "submission")
     PublishedSubmissions publishedSubmission;
 
     public Submissions() {

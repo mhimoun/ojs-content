@@ -36,6 +36,7 @@ public class ArticleRepositoryTest {
     @Test
     public void findBySubmissionIdAndStatus_ShouldReturnPublishedSubmissionDetails() throws Exception {
         Submissions submissions = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
+        assertThat(submissions.getPublishedSubmission()).isNotNull();
         assertThat(submissions.getPublishedSubmission().getSubmissionId()).isEqualTo(2);
         assertThat(submissions.getPublishedSubmission().getIssueId()).isEqualTo(1);
     }

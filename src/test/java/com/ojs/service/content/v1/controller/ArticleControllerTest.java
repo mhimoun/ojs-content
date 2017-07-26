@@ -25,61 +25,43 @@ public class ArticleControllerTest {
     @Test
     public void shouldReturn200OKResponseOnDefaultArticleEndpoint() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/v1/article/2")).andExpect(status().isOk());
     }
 
     @Test
     public void shouldReturnJsonResponse() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+        this.mockMvc.perform(get("/v1/article/2")).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
 
     @Test
     public void shouldReturnLinkToSelf() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).
-                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/article/1")));
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.links[?(@.rel=='self')].href").value(("http://localhost/v1/article/2")));
     }
-
-
-    @Test
-    public void shouldReturnLinkToJournal() throws Exception {
-
-        this.mockMvc.perform(get("/v1/article/1")).
-                andExpect(jsonPath("$.links[?(@.rel=='journal')].href").value(("http://localhost/v1/journal/1")));
-    }
-
 
     @Test
     public void shouldReturnLinkToIssue() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).
-                andExpect(jsonPath("$.links[?(@.rel=='issue')].href").value(("http://localhost/v1/issue/10")));
-    }
-
-
-    @Test
-    public void shouldReturnJournalId() throws Exception {
-
         this.mockMvc.perform(get("/v1/article/2")).
-                andExpect(jsonPath("$.journalId").value(1));
+                andExpect(jsonPath("$.links[?(@.rel=='issue')].href").value(("http://localhost/v1/issue/1")));
     }
-
 
     @Test
     public void shouldReturnIssueId() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/1")).
-                andExpect(jsonPath("$.issueId").value(10));
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.issueId").value(1));
     }
 
 
     @Test
     public void shouldReturnArticleId() throws Exception {
 
-        this.mockMvc.perform(get("/v1/article/5")).
-                andExpect(jsonPath("$.articleId").value(5));
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.articleId").value(2));
     }
 
 
