@@ -38,6 +38,7 @@ public class DBArticleService implements ArticleService {
 
     private Article populateArticleFromSubmission(Submissions submissions) {
         Article article = new Article(submissions.getSubmissionId(), submissions.getPublishedSubmission().getIssueId(), 0);
+        article.setDatePublished(submissions.getPublishedSubmission().getDatePublished());
 
         return article;
     }

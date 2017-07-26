@@ -48,7 +48,6 @@ public class DBArticleServiceTest {
 
     }
 
-
     @Test
     public void getPublishedArticles_shouldReturnResultsWhenSubmissionsPublishedInDB() throws Exception {
 
@@ -64,14 +63,6 @@ public class DBArticleServiceTest {
         assertThat(articles.get(0).getArticleId()).isEqualTo(11);
         assertThat(articles.get(1).getArticleId()).isEqualTo(13);
     }
-
-    @Test
-    public void getPublishedArticles_shouldReturnDatePublished() throws Exception {
-
-        List<Article> articles = articleService.getPublishedArticles();
-        assertThat(articles.get(0).getIssueId()).isEqualTo(3);
-    }
-
 
     private List<Submissions> submissions() {
 
