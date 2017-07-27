@@ -77,7 +77,7 @@ public class IssueControllerTest {
                 andExpect(jsonPath("$.published").value("true")).
                 andExpect(jsonPath("$.title").value("The title of the issue")).
                 andExpect(jsonPath("$.description").value("<p>some description of the issue</p>")).
-                andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
+                andExpect(jsonPath("$.datePublished").value("29-06-2017 15:18:00")).
                 andExpect(jsonPath("$.number").value("12"));
     }
 
@@ -99,10 +99,10 @@ public class IssueControllerTest {
     public void shouldReturnIssueDates() throws Exception {
 
         this.mockMvc.perform(get("/v1/issue/1")).
-                andExpect(jsonPath("$.datePublished").value("29-06-2017 14:18:00")).
-                andExpect(jsonPath("$.lastModified").value("29-06-2017 14:18:00")).
-                andExpect(jsonPath("$.dateNotified").value("22-07-2017 10:12:05")).
-                andExpect(jsonPath("$.openAccessDate").value("07-07-2017 06:07:07"));
+                andExpect(jsonPath("$.datePublished").value("29-06-2017 15:18:00")).
+                andExpect(jsonPath("$.lastModified").value("29-06-2017 15:18:00")).
+                andExpect(jsonPath("$.dateNotified").value("22-07-2017 11:12:05")).
+                andExpect(jsonPath("$.openAccessDate").value("07-07-2017 07:07:07"));
     }
 
     @Test

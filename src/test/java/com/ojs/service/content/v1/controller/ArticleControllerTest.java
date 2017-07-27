@@ -69,7 +69,7 @@ public class ArticleControllerTest {
     public void shouldReturnDatePublished() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
-                andExpect(jsonPath("$.datePublished").value("2017-06-29 00:00:00"));
+                andExpect(jsonPath("$.datePublished").value("29-06-2017 00:00:00"));
     }
 
 

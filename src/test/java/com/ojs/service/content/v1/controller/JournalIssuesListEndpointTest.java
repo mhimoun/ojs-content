@@ -119,8 +119,8 @@ public class JournalIssuesListEndpointTest {
     public void shouldReturnPublishedDate() throws Exception {
 
         this.mockMvc.perform(get("/v1/journal/1/issues")).andDo(print()).
-                andExpect(jsonPath("$.issues[0].datePublished").value("29-06-2017 14:18:00")).
-                andExpect(jsonPath("$.issues[1].datePublished").value("29-06-2017 14:18:00"));
+                andExpect(jsonPath("$.issues[0].datePublished").value("29-06-2017 15:18:00")).
+                andExpect(jsonPath("$.issues[1].datePublished").value("29-06-2017 15:18:00"));
     }
 
     @Test

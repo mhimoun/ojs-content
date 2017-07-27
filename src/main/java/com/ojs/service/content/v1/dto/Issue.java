@@ -2,7 +2,6 @@ package com.ojs.service.content.v1.dto;
 
 import org.springframework.hateoas.ResourceSupport;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 
