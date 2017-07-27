@@ -25,9 +25,17 @@ public class ArticleRepositoryTest {
     public void findByStatus_ShouldReturnAllPublishedArticles() throws Exception {
         List<Submissions> submissions = repository.findByStatus(ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.size()).isEqualTo(1);
-        assertThat(submissions.get(0).getPublishedSubmission().getSubmissionId()).isEqualTo(2);
+        assertThat(submissions.get(0).getSubmissionId()).isEqualTo(2);
     }
 
+    @Test
+    public void findByStatus_ShouldReturnAllPublishedArticlesDetails() throws Exception {
+        List<Submissions> submissions = repository.findByStatus(ARTICLE_STATUS_PUBLISHED);
+        assertThat(submissions.get(0).getSubmissionId()).isEqualTo(2);
+        assertThat(submissions.get(0).getStatus()).isEqualTo(ARTICLE_STATUS_PUBLISHED);
+        assertThat(submissions.get(0).getPublishedSubmission().getSubmissionId()).isEqualTo(2);
+        assertThat(submissions.get(0).getPublishedSubmission().getIssueId()).isEqualTo(1);
+    }
 
     @Test
     public void findByStatus_ShouldReturnAllPublishedArticlesWithDatePublished() throws Exception {
@@ -35,7 +43,6 @@ public class ArticleRepositoryTest {
         List<Submissions> submissions = repository.findByStatus(ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.size()).isEqualTo(1);
         assertThat(submissions.get(0).getPublishedSubmission().getDatePublished()).hasSameTimeAs(sdf.parse("2017-06-29 00:00:00"));
-
     }
 
     @Test
@@ -44,11 +51,12 @@ public class ArticleRepositoryTest {
         assertThat(submissions.getSubmissionId()).isEqualTo(2);
     }
 
-
     @Test
     public void findBySubmissionIdAndStatus_ShouldReturnPublishedSubmissionDetails() throws Exception {
         Submissions submissions = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.getPublishedSubmission()).isNotNull();
+        assertThat(submissions.getSubmissionId()).isEqualTo(2);
+        assertThat(submissions.getStatus()).isEqualTo(ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.getPublishedSubmission().getSubmissionId()).isEqualTo(2);
         assertThat(submissions.getPublishedSubmission().getIssueId()).isEqualTo(1);
     }
