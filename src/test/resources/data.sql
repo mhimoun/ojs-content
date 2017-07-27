@@ -50,3 +50,15 @@ INSERT INTO submissions (submission_id, locale, context_id, section_id, language
 
 INSERT INTO published_submissions (published_submission_id, submission_id, issue_id, date_published, seq, access_status) VALUES
 (1, 2, 1, '2017-06-29 00:00:00', 1, 0);
+
+
+INSERT INTO submission_settings (submission_id, locale, setting_name, setting_value, setting_type) VALUES
+(2, '', 'copyrightYear', '2017', 'string'),
+(2, '', 'licenseURL', '', 'string'),
+(2, 'en_US', 'abstract', '<p>this is an abstrat</p>\r\n<p>&nbsp;</p>\r\n<p><strong>wiht Bold text </strong></p>', 'string'),
+(2, 'en_US', 'cleanTitle', 'article title', 'string'),
+(2, 'en_US', 'copyrightHolder', 'Test default 1', 'string'),
+(2, 'en_US', 'coverage', 'Coverage Information', 'string'),
+(2, 'en_US', 'prefix', 'the preifix', 'string'),
+(2, 'en_US', 'subtitle', 'some sub tilte', 'string'),
+(2, 'en_US', 'title', 'article title', 'string');

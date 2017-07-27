@@ -2,6 +2,7 @@ package com.ojs.service.content.v1.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Submissions {
@@ -62,6 +63,9 @@ public class Submissions {
 
     @OneToOne(mappedBy = "submission")
     PublishedSubmissions publishedSubmission;
+
+    @OneToMany(mappedBy = "submissions")
+    List<SubmissionSettings> submissionSettings;
 
     public Submissions() {
     }
@@ -201,5 +205,13 @@ public class Submissions {
 
     public void setPublishedSubmission(PublishedSubmissions publishedSubmission) {
         this.publishedSubmission = publishedSubmission;
+    }
+
+    public List<SubmissionSettings> getSubmissionSettings() {
+        return submissionSettings;
+    }
+
+    public void setSubmissionSettings(List<SubmissionSettings> submissionSettings) {
+        this.submissionSettings = submissionSettings;
     }
 }
