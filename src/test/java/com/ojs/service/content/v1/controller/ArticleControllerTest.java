@@ -64,6 +64,19 @@ public class ArticleControllerTest {
                 andExpect(jsonPath("$.articleId").value(2));
     }
 
+    @Test
+    public void shouldRetrun404NotFoundIfArticleDoesNotExist() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/404")).andExpect(status().isNotFound());
+
+    }
+
+    @Test
+    public void shouldRetrun404NotFoundIfArticleIsNotPublished() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/1")).andExpect(status().isNotFound());
+
+    }
 
     @Test
     public void shouldReturnDatePublished() throws Exception {

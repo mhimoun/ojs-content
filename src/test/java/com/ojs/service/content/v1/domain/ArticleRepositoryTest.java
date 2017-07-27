@@ -70,5 +70,14 @@ public class ArticleRepositoryTest {
 
     }
 
-
+    @Test
+    public void findBySubmissionIdAndStatus_shouldReturnNullIfSubmissionDoesNotExistInDB() throws Exception {
+        Submissions submission = repository.findBySubmissionIdAndStatus(404, ARTICLE_STATUS_PUBLISHED);
+        assertThat(submission).isNull();
+    }
+    @Test
+    public void findBySubmissionIdAndStatus_shouldReturnNullIfSubmissionIsNotPublished() throws Exception {
+        Submissions submission = repository.findBySubmissionIdAndStatus(1, ARTICLE_STATUS_PUBLISHED);
+        assertThat(submission).isNull();
+    }
 }

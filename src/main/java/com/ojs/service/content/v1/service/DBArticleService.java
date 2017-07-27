@@ -3,6 +3,7 @@ package com.ojs.service.content.v1.service;
 import com.ojs.service.content.v1.domain.ArticleRepository;
 import com.ojs.service.content.v1.domain.Submissions;
 import com.ojs.service.content.v1.dto.Article;
+import com.ojs.service.content.v1.exception.ArticleNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,9 @@ public class DBArticleService implements ArticleService {
 
     @Override
     public Article getArticleById(long articleId) {
-        return populateArticleFromSubmission(articleRepository.findBySubmissionIdAndStatus(articleId, ArticleRepository.ARTICLE_STATUS_PUBLISHED));
+        Submissions submission = articleRepository.findBySubmissionIdAndStatus(articleId, ArticleRepository.ARTICLE_STATUS_PUBLISHED);
+        if (submission == null) throw new ArticleNotFoundException(articleId);
+        return populateArticleFromSubmission(submission);
     }
 
     private Article populateArticleFromSubmission(Submissions submissions) {

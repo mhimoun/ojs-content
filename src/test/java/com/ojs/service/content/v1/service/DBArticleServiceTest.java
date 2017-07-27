@@ -4,6 +4,7 @@ package com.ojs.service.content.v1.service;
 import com.ojs.service.content.v1.domain.ArticleRepository;
 import com.ojs.service.content.v1.domain.Submissions;
 import com.ojs.service.content.v1.dto.Article;
+import com.ojs.service.content.v1.exception.ArticleNotFoundException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -64,12 +65,34 @@ public class DBArticleServiceTest {
         assertThat(articles.get(1).getArticleId()).isEqualTo(13);
     }
 
-    private List<Submissions> submissions() {
+    @Test
+    public void getArticleById_shouldReturnEmptyListWhenNoPublishedArticles() throws Exception {
 
+        when(articleRepository.findBySubmissionIdAndStatus(11, ARTICLE_STATUS_PUBLISHED)).thenReturn(getSubmission());
+        Article article = articleService.getArticleById(11);
+        assertThat(article.getArticleId()).isEqualTo(11);
+        assertThat(article.getIssueId()).isEqualTo(3);
+    }
+
+
+    @Test
+    public void shouldThrowExceptionIfArticleNotFoundOrNotPublished() throws Exception {
+
+        this.thrown.expect(ArticleNotFoundException.class);
+
+        articleService.getArticleById(404);
+
+    }
+
+    private List<Submissions> submissions() {
+        return Arrays.asList(getSubmission(), new Submissions(13));
+    }
+
+    private Submissions getSubmission() {
         Submissions submissions = new Submissions(11);
         submissions.getPublishedSubmission().setIssueId(3);
-        Submissions submissions2 = new Submissions(13);
-        return Arrays.asList(submissions, submissions2);
+        return submissions;
     }
+
 
 }

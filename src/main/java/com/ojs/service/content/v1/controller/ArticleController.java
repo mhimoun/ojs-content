@@ -1,14 +1,12 @@
 package com.ojs.service.content.v1.controller;
 
 import com.ojs.service.content.v1.dto.Article;
+import com.ojs.service.content.v1.exception.ArticleNotFoundException;
 import com.ojs.service.content.v1.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -38,5 +36,12 @@ public class ArticleController {
 
 
     }
+
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private void handleVinNotFound(ArticleNotFoundException ex) {
+    }
+
 
 }
