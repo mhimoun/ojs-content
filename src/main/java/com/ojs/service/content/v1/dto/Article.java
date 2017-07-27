@@ -11,6 +11,7 @@ public class Article extends ResourceSupport {
     private final long issueId;
     private final long articleId;
     private Date datePublished;
+    private String pages;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -37,5 +38,13 @@ public class Article extends ResourceSupport {
 
     public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;
+    }
+
+    public String getPages() {
+        return pages;
+    }
+
+    public void setPages(String pages) {
+        this.pages = pages;
     }
 }

@@ -72,6 +72,7 @@ public class DBArticleServiceTest {
         Article article = articleService.getArticleById(11);
         assertThat(article.getArticleId()).isEqualTo(11);
         assertThat(article.getIssueId()).isEqualTo(3);
+        assertThat(article.getPages()).isEqualTo("some pages");
     }
 
 
@@ -90,7 +91,9 @@ public class DBArticleServiceTest {
 
     private Submissions getSubmission() {
         Submissions submissions = new Submissions(11);
+        submissions.setPages("some pages");
         submissions.getPublishedSubmission().setIssueId(3);
+
         return submissions;
     }
 
