@@ -12,6 +12,7 @@ public class Article extends ResourceSupport {
     private final long articleId;
     private Date datePublished;
     private String pages;
+    private String title;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -46,5 +47,13 @@ public class Article extends ResourceSupport {
 
     public void setPages(String pages) {
         this.pages = pages;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

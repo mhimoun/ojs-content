@@ -2,6 +2,7 @@ package com.ojs.service.content.v1.service;
 
 
 import com.ojs.service.content.v1.domain.ArticleRepository;
+import com.ojs.service.content.v1.domain.SubmissionSettings;
 import com.ojs.service.content.v1.domain.Submissions;
 import com.ojs.service.content.v1.dto.Article;
 import com.ojs.service.content.v1.exception.ArticleNotFoundException;
@@ -75,6 +76,14 @@ public class DBArticleServiceTest {
         assertThat(article.getPages()).isEqualTo("some pages");
     }
 
+    @Test
+    public void getArticleById_shouldReturnArticleSettings() throws Exception {
+
+        when(articleRepository.findBySubmissionIdAndStatus(11, ARTICLE_STATUS_PUBLISHED)).thenReturn(getSubmission());
+        Article article = articleService.getArticleById(11);
+        assertThat(article.getTitle()).isEqualTo("some title");
+
+    }
 
     @Test
     public void shouldThrowExceptionIfArticleNotFoundOrNotPublished() throws Exception {
@@ -93,6 +102,11 @@ public class DBArticleServiceTest {
         Submissions submissions = new Submissions(11);
         submissions.setPages("some pages");
         submissions.getPublishedSubmission().setIssueId(3);
+
+        SubmissionSettings title = new SubmissionSettings(11, "en", "title", "some title", "string");
+        List<SubmissionSettings> settings = Arrays.asList(title);
+        submissions.setSubmissionSettings(settings);
+
 
         return submissions;
     }

@@ -92,4 +92,11 @@ public class ArticleControllerTest {
                 andExpect(jsonPath("$.pages").value("45"));
 
     }
+    @Test
+    public void shouldReturnArticleTitle() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.title").value("article title"));
+
+    }
 }

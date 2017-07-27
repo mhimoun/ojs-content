@@ -46,13 +46,13 @@ public class ArticleRepositoryTest {
     }
 
     @Test
-    public void findBySubmissionIdAndStatus_ShouldReturnArticleById() throws Exception {
+    public void  findByIdAndStatus_ShouldReturnArticleById() throws Exception {
         Submissions submissions = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.getSubmissionId()).isEqualTo(2);
     }
 
     @Test
-    public void findBySubmissionIdAndStatus_ShouldReturnPublishedSubmissionDetails() throws Exception {
+    public void  findByIdAndStatus_ShouldReturnPublishedSubmissionDetails() throws Exception {
         Submissions submissions = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.getPublishedSubmission()).isNotNull();
         assertThat(submissions.getSubmissionId()).isEqualTo(2);
@@ -63,7 +63,7 @@ public class ArticleRepositoryTest {
 
 
     @Test
-    public void findBySubmissionIdAndStatus_ShouldReturnDatePublished() throws Exception {
+    public void  findByIdAndStatus_ShouldReturnDatePublished() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Submissions submissions = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
         assertThat(submissions.getPublishedSubmission().getDatePublished()).hasSameTimeAs(sdf.parse("2017-06-29 00:00:00"));
@@ -71,13 +71,23 @@ public class ArticleRepositoryTest {
     }
 
     @Test
-    public void findBySubmissionIdAndStatus_shouldReturnNullIfSubmissionDoesNotExistInDB() throws Exception {
+    public void  findByIdAndStatus_shouldReturnNullIfSubmissionDoesNotExistInDB() throws Exception {
         Submissions submission = repository.findBySubmissionIdAndStatus(404, ARTICLE_STATUS_PUBLISHED);
         assertThat(submission).isNull();
     }
+    
     @Test
-    public void findBySubmissionIdAndStatus_shouldReturnNullIfSubmissionIsNotPublished() throws Exception {
+    public void findByIdAndStatus_shouldReturnNullIfSubmissionIsNotPublished() throws Exception {
         Submissions submission = repository.findBySubmissionIdAndStatus(1, ARTICLE_STATUS_PUBLISHED);
         assertThat(submission).isNull();
+    }
+
+    @Test
+    public void findByIdAndStatus_shouldReturnArticleSettings() throws Exception {
+
+        Submissions submission = repository.findBySubmissionIdAndStatus(2, ARTICLE_STATUS_PUBLISHED);
+        assertThat(submission.getSubmissionSettings().size()).isGreaterThan(0);
+        assertThat(submission.getSubmissionSettings().get(0)).isNotNull();
+
     }
 }
