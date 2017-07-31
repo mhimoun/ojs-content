@@ -18,6 +18,8 @@ public class Article extends ResourceSupport {
 
     @JsonProperty("abstract")
     private String articleAbstract;
+    private String cleanTitle;
+    private String subTitle;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -76,5 +78,21 @@ public class Article extends ResourceSupport {
 
     public void setArticleAbstract(String articleAbstract) {
         this.articleAbstract = articleAbstract;
+    }
+
+    public void setCleanTitle(String cleanTitle) {
+        this.cleanTitle = cleanTitle;
+    }
+
+    public String getCleanTitle() {
+        return cleanTitle;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 }

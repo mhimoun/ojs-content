@@ -82,6 +82,8 @@ public class DBArticleServiceTest {
         when(articleRepository.findBySubmissionIdAndStatus(11, ARTICLE_STATUS_PUBLISHED)).thenReturn(getSubmission());
         Article article = articleService.getArticleById(11);
         assertThat(article.getTitle()).isEqualTo("some title");
+        assertThat(article.getSubTitle()).isEqualTo("sub title");
+        assertThat(article.getCleanTitle()).isEqualTo("some clean title");
         assertThat(article.getCopyrightYear()).isEqualTo("2017");
         assertThat(article.getArticleAbstract()).isEqualTo("some abstract");
 
@@ -106,9 +108,11 @@ public class DBArticleServiceTest {
         submissions.getPublishedSubmission().setIssueId(3);
 
         SubmissionSettings title = new SubmissionSettings(11, "en", "title", "some title", "string");
+        SubmissionSettings cleanTitle = new SubmissionSettings(11, "en", "cleanTitle", "some clean title", "string");
+        SubmissionSettings subTitle = new SubmissionSettings(11, "en", "subtitle", "sub title", "string");
         SubmissionSettings copyrightYear = new SubmissionSettings(11, "", "copyrightYear", "2017", "string");
         SubmissionSettings articleAbstract = new SubmissionSettings(11, "", "abstract", "some abstract", "string");
-        List<SubmissionSettings> settings = Arrays.asList(title,copyrightYear,articleAbstract);
+        List<SubmissionSettings> settings = Arrays.asList(title, subTitle, cleanTitle, copyrightYear, articleAbstract);
         submissions.setSubmissionSettings(settings);
 
 

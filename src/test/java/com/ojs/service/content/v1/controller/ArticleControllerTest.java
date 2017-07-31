@@ -94,10 +94,12 @@ public class ArticleControllerTest {
     }
 
     @Test
-    public void shouldReturnArticleTitle() throws Exception {
+    public void shouldReturnArticleTitles() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
-                andExpect(jsonPath("$.title").value("article title"));
+                andExpect(jsonPath("$.title").value("article title")).
+                andExpect(jsonPath("$.cleanTitle").value("article title")).
+                andExpect(jsonPath("$.subTitle").value("some sub tilte"));
 
     }
 
@@ -109,7 +111,7 @@ public class ArticleControllerTest {
 
     }
 
-   @Test
+    @Test
     public void shouldReturnArticleAbstract() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
