@@ -50,9 +50,10 @@ public class DBArticleService implements ArticleService {
         article.setDatePublished(submissions.getPublishedSubmission().getDatePublished());
 
         if (submissions.getSubmissionSettings() != null) {
-
             Map<String, SubmissionSettings> settingsMap = submissions.getSubmissionSettings().stream().collect(toMap(SubmissionSettings::getSettingName, Function.identity()));
             article.setTitle(settingsMap.get("title").getSettingValue());
+            article.setCopyrightYear(settingsMap.get("copyrightYear").getSettingValue());
+            article.setArticleAbstract(settingsMap.get("abstract").getSettingValue());
         }
         return article;
     }

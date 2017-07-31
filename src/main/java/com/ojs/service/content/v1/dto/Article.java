@@ -1,5 +1,6 @@
 package com.ojs.service.content.v1.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.Date;
@@ -13,6 +14,10 @@ public class Article extends ResourceSupport {
     private Date datePublished;
     private String pages;
     private String title;
+    private String copyrightYear;
+
+    @JsonProperty("abstract")
+    private String articleAbstract;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -55,5 +60,21 @@ public class Article extends ResourceSupport {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCopyrightYear() {
+        return copyrightYear;
+    }
+
+    public void setCopyrightYear(String copyrightYear) {
+        this.copyrightYear = copyrightYear;
+    }
+
+    public String getArticleAbstract() {
+        return articleAbstract;
+    }
+
+    public void setArticleAbstract(String articleAbstract) {
+        this.articleAbstract = articleAbstract;
     }
 }

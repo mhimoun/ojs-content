@@ -92,6 +92,7 @@ public class ArticleControllerTest {
                 andExpect(jsonPath("$.pages").value("45"));
 
     }
+
     @Test
     public void shouldReturnArticleTitle() throws Exception {
 
@@ -99,4 +100,22 @@ public class ArticleControllerTest {
                 andExpect(jsonPath("$.title").value("article title"));
 
     }
+
+    @Test
+    public void shouldReturnArticleCopyrightYear() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.copyrightYear").value("2017"));
+
+    }
+
+   @Test
+    public void shouldReturnArticleAbstract() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.abstract").value("<p>this is an abstrat</p>\\r\\n<p>&nbsp;</p>\\r\\n<p><strong>wiht Bold text </strong></p>"));
+
+    }
+
+
 }
