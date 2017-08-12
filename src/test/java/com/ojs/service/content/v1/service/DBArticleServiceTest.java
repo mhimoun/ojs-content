@@ -86,6 +86,9 @@ public class DBArticleServiceTest {
         assertThat(article.getCleanTitle()).isEqualTo("some clean title");
         assertThat(article.getCopyrightYear()).isEqualTo("2017");
         assertThat(article.getArticleAbstract()).isEqualTo("some abstract");
+        assertThat(article.getPrefix()).isEqualTo("some prefix");
+        assertThat(article.getCoverage()).isEqualTo("some coverage");
+        assertThat(article.getCopyrightHolder()).isEqualTo("some copyrightHolder");
 
     }
 
@@ -112,7 +115,10 @@ public class DBArticleServiceTest {
         SubmissionSettings subTitle = new SubmissionSettings(11, "en", "subtitle", "sub title", "string");
         SubmissionSettings copyrightYear = new SubmissionSettings(11, "", "copyrightYear", "2017", "string");
         SubmissionSettings articleAbstract = new SubmissionSettings(11, "", "abstract", "some abstract", "string");
-        List<SubmissionSettings> settings = Arrays.asList(title, subTitle, cleanTitle, copyrightYear, articleAbstract);
+        SubmissionSettings coverage = new SubmissionSettings(11, "", "coverage", "some coverage", "string");
+        SubmissionSettings prefix = new SubmissionSettings(11, "", "prefix", "some prefix", "string");
+        SubmissionSettings copyrightHolder = new SubmissionSettings(11, "", "copyrightHolder", "some copyrightHolder", "string");
+        List<SubmissionSettings> settings = Arrays.asList(title, subTitle, cleanTitle, copyrightYear, articleAbstract,copyrightHolder,prefix,coverage);
         submissions.setSubmissionSettings(settings);
 
 

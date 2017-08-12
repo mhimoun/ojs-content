@@ -20,6 +20,9 @@ public class Article extends ResourceSupport {
     private String articleAbstract;
     private String cleanTitle;
     private String subTitle;
+    private String prefix;
+    private String coverage;
+    private String copyrightHolder;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -94,5 +97,29 @@ public class Article extends ResourceSupport {
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getCoverage() {
+        return coverage;
+    }
+
+    public void setCoverage(String coverage) {
+        this.coverage = coverage;
+    }
+
+    public String getCopyrightHolder() {
+        return copyrightHolder;
+    }
+
+    public void setCopyrightHolder(String copyrightHolder) {
+        this.copyrightHolder = copyrightHolder;
     }
 }

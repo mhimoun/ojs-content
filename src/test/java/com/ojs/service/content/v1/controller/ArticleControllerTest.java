@@ -104,11 +104,11 @@ public class ArticleControllerTest {
     }
 
     @Test
-    public void shouldReturnArticleCopyrightYear() throws Exception {
+    public void shouldReturnArticleCopyrightInfo() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
-                andExpect(jsonPath("$.copyrightYear").value("2017"));
-
+                andExpect(jsonPath("$.copyrightYear").value("2017")).
+                andExpect(jsonPath("$.copyrightHolder").value("Test default 1"));
     }
 
     @Test
@@ -116,6 +116,22 @@ public class ArticleControllerTest {
 
         this.mockMvc.perform(get("/v1/article/2")).
                 andExpect(jsonPath("$.abstract").value("<p>this is an abstrat</p>\\r\\n<p>&nbsp;</p>\\r\\n<p><strong>wiht Bold text </strong></p>"));
+
+    }
+
+    @Test
+    public void shouldReturnArticleCoverage() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.coverage").value("Coverage Information"));
+    }
+
+
+    @Test
+    public void shouldReturnArticlePrefix() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.prefix").value("the preifix"));
 
     }
 
