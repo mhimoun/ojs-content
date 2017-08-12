@@ -67,6 +67,30 @@ public class DBArticleServiceTest {
     }
 
     @Test
+    public void getPublishedArticles_shouldReturnArticlesWithIssueId() throws Exception {
+
+        List<Article> articles = articleService.getPublishedArticles();
+        assertThat(articles.get(0).getIssueId()).isEqualTo(3);
+    }
+
+    @Test
+    public void getPublishedArticles_shouldReturnArticlesWithMainInfo() throws Exception {
+
+        List<Article> articles = articleService.getPublishedArticles();
+        assertThat(articles.get(0).getPages()).isEqualTo("some pages");
+        assertThat(articles.get(0).getTitle()).isEqualTo("some title");
+    }
+
+
+    @Test
+    public void getPublishedArticles_shouldNotReturnArticlesAbstract() throws Exception {
+
+        List<Article> articles = articleService.getPublishedArticles();
+        assertThat(articles.get(0).getArticleAbstract()).isNull();
+    }
+
+
+    @Test
     public void getArticleById_shouldReturnArticle() throws Exception {
 
         when(articleRepository.findBySubmissionIdAndStatus(11, ARTICLE_STATUS_PUBLISHED)).thenReturn(getSubmission());
@@ -81,6 +105,7 @@ public class DBArticleServiceTest {
         when(articleRepository.findBySubmissionIdAndStatus(11, ARTICLE_STATUS_PUBLISHED)).thenReturn(getSubmission());
         Article article = articleService.getArticleById(11);
         assertThat(article.getTitle()).isEqualTo("some title");
+        assertThat(article.getCopyrightHolder()).isEqualTo("some copyrightHolder");
     }
 
     @Test
@@ -102,7 +127,9 @@ public class DBArticleServiceTest {
         submissions.getPublishedSubmission().setIssueId(3);
 
         SubmissionSettings title = new SubmissionSettings(11, "en", "title", "some title", "string");
-        List<SubmissionSettings> settings = Arrays.asList(title);
+        SubmissionSettings copyrightHolder = new SubmissionSettings(11, "", "copyrightHolder", "some copyrightHolder", "string");
+
+        List<SubmissionSettings> settings = Arrays.asList(title,copyrightHolder);
         submissions.setSubmissionSettings(settings);
 
 

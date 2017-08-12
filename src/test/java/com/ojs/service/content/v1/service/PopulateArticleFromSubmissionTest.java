@@ -20,7 +20,7 @@ public class PopulateArticleFromSubmissionTest {
     @Test
     public void valueOf_shouldReturnArticleWithArticleId() throws Exception {
 
-        Article article = PopulateArticleFromSubmission.valueOf(new Submissions(5));
+        Article article = PopulateArticleFromSubmission.valueOf(new Submissions(5), false);
 
         assertThat(article.getArticleId()).isEqualTo(5);
 
@@ -29,7 +29,7 @@ public class PopulateArticleFromSubmissionTest {
     @Test
     public void valueOf_shouldReturnArticleWithIssueId() throws Exception {
 
-        Article article = PopulateArticleFromSubmission.valueOf(getSubmission());
+        Article article = PopulateArticleFromSubmission.valueOf(getSubmission(), false);
 
         assertThat(article.getIssueId()).isEqualTo(3);
 
@@ -39,7 +39,7 @@ public class PopulateArticleFromSubmissionTest {
     public void valueOf_shouldReturnArticleWitDatePublished() throws Exception {
         Date expectedDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse("2017-06-29 15:18:00");
 
-        Article article = PopulateArticleFromSubmission.valueOf(getSubmission());
+        Article article = PopulateArticleFromSubmission.valueOf(getSubmission(), false);
 
         assertThat(article.getDatePublished()).hasSameTimeAs(expectedDate);
 
@@ -49,7 +49,7 @@ public class PopulateArticleFromSubmissionTest {
     @Test
     public void valueOf_shouldReturnArticleWithPages() throws Exception {
 
-        Article article = PopulateArticleFromSubmission.valueOf(getSubmission());
+        Article article = PopulateArticleFromSubmission.valueOf(getSubmission(), false);
 
         assertThat(article.getPages()).isEqualTo("some pages");
 
@@ -58,7 +58,7 @@ public class PopulateArticleFromSubmissionTest {
     @Test
     public void valueOf_shouldReturnArticleSettings() throws Exception {
 
-        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()));
+        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()), true);
         assertThat(article.getTitle()).isEqualTo("some title");
         assertThat(article.getSubTitle()).isEqualTo("sub title");
         assertThat(article.getCleanTitle()).isEqualTo("some clean title");
@@ -70,6 +70,29 @@ public class PopulateArticleFromSubmissionTest {
 
     }
 
+    @Test
+    public void valueOf_shouldPopulateMainSettingsIfIncludeAllDetailsIsFalse() throws Exception {
+
+        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()), false);
+        assertThat(article.getTitle()).isEqualTo("some title");
+        assertThat(article.getSubTitle()).isEqualTo("sub title");
+        assertThat(article.getPrefix()).isEqualTo("some prefix");
+
+    }
+
+     @Test
+    public void valueOf_shouldNotPopulateArticleAbstractIfIncludeAllSettingIsFalse() throws Exception {
+
+        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()),false);
+        assertThat(article.getArticleAbstract()).isNull();
+    }
+
+     @Test
+    public void valueOf_shouldNotPopulateIncludeAllSettingIfFalse() throws Exception {
+
+        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()),false);
+        assertThat(article.getCleanTitle()).isNull();
+    }
 
     private Submissions getSubmission() throws ParseException {
         Date datePublished = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse("2017-06-29 15:18:00");
@@ -89,7 +112,6 @@ public class PopulateArticleFromSubmissionTest {
         SubmissionSettings copyrightHolder = new SubmissionSettings(11, "", "copyrightHolder", "some copyrightHolder", "string");
         List<SubmissionSettings> settings = Arrays.asList(title, subTitle, cleanTitle, copyrightYear, articleAbstract, copyrightHolder, prefix, coverage);
         submissions.setSubmissionSettings(settings);
-
 
         return submissions;
     }

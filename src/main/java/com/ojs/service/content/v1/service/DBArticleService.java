@@ -27,7 +27,7 @@ public class DBArticleService implements ArticleService {
         List<Submissions> publishedSubmissions = articleRepository.findByStatus(ArticleRepository.ARTICLE_STATUS_PUBLISHED);
 
         for (Submissions submissions : publishedSubmissions) {
-            articles.add(PopulateArticleFromSubmission.valueOf(submissions));
+            articles.add(PopulateArticleFromSubmission.valueOf(submissions, false));
         }
         return articles;
     }
@@ -36,7 +36,7 @@ public class DBArticleService implements ArticleService {
     public Article getArticleById(long articleId) {
         Submissions submission = articleRepository.findBySubmissionIdAndStatus(articleId, ArticleRepository.ARTICLE_STATUS_PUBLISHED);
         if (submission == null) throw new ArticleNotFoundException(articleId);
-        return PopulateArticleFromSubmission.valueOf(submission);
+        return PopulateArticleFromSubmission.valueOf(submission, true);
     }
 
 }
