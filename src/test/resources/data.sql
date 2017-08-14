@@ -54,7 +54,7 @@ INSERT INTO published_submissions (published_submission_id, submission_id, issue
 
 INSERT INTO submission_settings (submission_id, locale, setting_name, setting_value, setting_type) VALUES
 (2, 'en_US', 'prefix', 'the preifix', 'string'),
-(2, '', 'licenseURL', '', 'string'),
+(2, '', 'licenseURL', 'http://www.license-url.com/myarticle-id', 'string'),
 (2, 'en_US', 'copyrightHolder', 'Test default 1', 'string'),
 (2, 'en_US', 'coverage', 'Coverage Information', 'string'),
 (2, '', 'copyrightYear', '2017', 'string'),

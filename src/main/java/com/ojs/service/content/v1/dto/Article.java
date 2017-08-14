@@ -23,6 +23,7 @@ public class Article extends ResourceSupport {
     private String prefix;
     private String coverage;
     private String copyrightHolder;
+    private String licenseURL;
 
 
     public Article(long articleId, long issueId, long journalId) {
@@ -121,5 +122,13 @@ public class Article extends ResourceSupport {
 
     public void setCopyrightHolder(String copyrightHolder) {
         this.copyrightHolder = copyrightHolder;
+    }
+
+    public void setLicenseURL(String licenseURL) {
+        this.licenseURL = licenseURL;
+    }
+
+    public String getLicenseURL() {
+        return licenseURL;
     }
 }

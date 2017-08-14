@@ -80,18 +80,15 @@ public class PopulateArticleFromSubmissionTest {
 
     }
 
-     @Test
-    public void valueOf_shouldNotPopulateArticleAbstractIfIncludeAllSettingIsFalse() throws Exception {
-
-        Article article = PopulateArticleFromSubmission.valueOf((getSubmission()),false);
-        assertThat(article.getArticleAbstract()).isNull();
-    }
 
      @Test
-    public void valueOf_shouldNotPopulateIncludeAllSettingIfFalse() throws Exception {
+    public void valueOf_shouldNotPopulateFieldsIfIncludeAllSettingIfFalse() throws Exception {
 
         Article article = PopulateArticleFromSubmission.valueOf((getSubmission()),false);
         assertThat(article.getCleanTitle()).isNull();
+        assertThat(article.getArticleAbstract()).isNull();
+        assertThat(article.getCopyrightHolder()).isNull();
+
     }
 
     private Submissions getSubmission() throws ParseException {

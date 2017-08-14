@@ -126,14 +126,18 @@ public class ArticleControllerTest {
                 andExpect(jsonPath("$.coverage").value("Coverage Information"));
     }
 
+    @Test
+    public void shouldReturnArticleLicenseURL() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.licenseURL").value("http://www.license-url.com/myarticle-id"));
+    }
 
     @Test
     public void shouldReturnArticlePrefix() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
                 andExpect(jsonPath("$.prefix").value("the preifix"));
-
     }
-
 
 }

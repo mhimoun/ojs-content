@@ -30,6 +30,7 @@ public class PopulateArticleFromSubmission {
                 if (settingsMap.get("abstract")!=null)    article.setArticleAbstract(settingsMap.get("abstract").getSettingValue());
                 if (settingsMap.get("coverage")!=null)     article.setCoverage(settingsMap.get("coverage").getSettingValue());
                 if (settingsMap.get("copyrightHolder")!=null)     article.setCopyrightHolder(settingsMap.get("copyrightHolder").getSettingValue());
+                if (settingsMap.get("licenseURL")!=null)     article.setLicenseURL(settingsMap.get("licenseURL").getSettingValue());
             }
 
             }
