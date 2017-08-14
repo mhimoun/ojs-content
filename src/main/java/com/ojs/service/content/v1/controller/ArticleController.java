@@ -26,13 +26,33 @@ public class ArticleController {
         return article;
     }
 
+    @GetMapping("/v1/article/{articleId}/media")
+    public Article getMedia(@PathVariable long articleId) {
+
+        Article article = articleService.getArticleById(articleId);
+        populateArticleHateoasLinks(article);
+        return article;
+    }
+
+    @GetMapping("/v1/article/{articleId}/abstract")
+    public Article getAbstract(@PathVariable long articleId) {
+
+        Article article = articleService.getArticleById(articleId);
+        populateArticleHateoasLinks(article);
+        return article;
+    }
+
     private void populateArticleHateoasLinks(Article article) {
 
         Link selfLink = linkTo(methodOn(ArticleController.class).getArticleDefault(article.getArticleId())).withSelfRel();
         Link issueLink = linkTo(methodOn(IssueController.class).getIssueDefault(article.getIssueId())).withRel("issue");
+        Link mediaLink = linkTo(methodOn(ArticleController.class).getMedia(article.getArticleId())).withRel("media");
+        Link abstractLink = linkTo(methodOn(ArticleController.class).getAbstract(article.getArticleId())).withRel("abstract");
 
         article.add(selfLink);
         article.add(issueLink);
+        article.add(mediaLink);
+        article.add(abstractLink);
 
 
     }

@@ -43,6 +43,23 @@ public class ArticleControllerTest {
     }
 
     @Test
+    public void shouldReturnLinkToMedia() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.links[?(@.rel=='media')].href").value(("http://localhost/v1/article/2/media")));
+    }
+
+
+    @Test
+    public void shouldReturnLinkToAbstract() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.links[?(@.rel=='abstract')].href").value(("http://localhost/v1/article/2/abstract")));
+    }
+
+
+
+    @Test
     public void shouldReturnLinkToIssue() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
