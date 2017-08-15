@@ -51,6 +51,23 @@ public class ArticleControllerTest {
 
 
     @Test
+    public void shouldReturnLinkToPdf() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.links[?(@.rel=='pdf')].href").value(("http://localhost/v1/article/2/pdf")));
+    }
+
+
+
+    @Test
+    public void shouldReturnLinkToHeader() throws Exception {
+
+        this.mockMvc.perform(get("/v1/article/2")).
+                andExpect(jsonPath("$.links[?(@.rel=='header')].href").value(("http://localhost/v1/article/2/header")));
+    }
+
+
+    @Test
     public void shouldReturnLinkToAbstract() throws Exception {
 
         this.mockMvc.perform(get("/v1/article/2")).
